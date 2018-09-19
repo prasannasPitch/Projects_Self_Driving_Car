@@ -24,7 +24,10 @@ So my pipeline for lane detection will be as follows.
 
 As this project is a basic lane finding project, I have used just openCV for detection of the lanes (Advanced lane finding algorithm using deep learning will be the next project). Drawing line function is the method that finds the dominant line in a given image. All the students will differ in implementing this method. I can define my algorithm in three cases.
 
-*Case I - Clear Edge Detection*
+**Case I - Clear Edge Detection**
+
+![ClearEdgeDetection](test_images/whiteCarLaneSwitch.jpg)
+
 
 From the output of Hough Transform, I get list of lines combining both left lanes and right lanes. Each line will have two points - the starting point and end point of the line. Initially I seperate the lines whether they belong to left lane or right lane. This is found by using its location value and slope of the line.
 
@@ -32,11 +35,13 @@ After determining the lane side, all the points belonging to each side is collec
 
 To determine the length or range of the dominant line, confident possible range value in either side is calculated and compared. The maximum value is assigned for both the sides.
 
-*Case II - Edges Missing*
+**Case II - Edges Missing**
+
+![EdgeMissing](test_images/solidWhiteRight.jpg)
 
 There is a unfortunate event when Canny edge detection could not find any edges in left or right edges. To handle these condition, I keep a track on the information of the previously found confident line. So whenever a unfortunate situation arises, it uses previous confident value. So till the edge is detected, it maintains the line values in the previously found confident line. As soon as the edge is detected, algorithm switches to the new line values.
 
-*Case III - Anomaly Case*
+**Case III - Anomaly Case**
 
 Since all the point are considered for finding the best fitting line, if there is a disturbance (shadows or patches misleading to false edge) present in the image, best fitting line affected a lot. For example, in a situation by which right edge is missing but there is some misleading patch, then my algorithm would consider it as a potential edge and line value will be calculated. So detected line will differ vastly from the real lane. To handle this I have used the following strategy. Whenever there is a change in intercept (or slope), there is a minimum threshold within which it is considered as a normal change. Anything more than the allowable change is considered as an anomaly situation. To handle this anomaly situation, again I use the same waay of using the previous confident line explained above.
 
