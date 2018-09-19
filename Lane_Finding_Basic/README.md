@@ -79,4 +79,4 @@ Code File - P1.ipynb
 
 Result files - Test images folder
 
-Result videos - Test videos folder
+Result videos - Test videos output folder
