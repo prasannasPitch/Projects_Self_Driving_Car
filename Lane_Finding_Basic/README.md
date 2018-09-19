@@ -52,7 +52,7 @@ There is a unfortunate event when Canny edge detection could not find any edges 
 
 **Case III - Anomaly Case**
 
-Since all the point are considered for finding the best fitting line, if there is a disturbance (shadows or patches misleading to false edge) present in the image, best fitting line affected a lot. For example, in a situation by which right edge is missing but there is some misleading patch, then my algorithm would consider it as a potential edge and line value will be calculated. So detected line will differ vastly from the real lane. To handle this I have used the following strategy. Whenever there is a change in intercept (or slope), there is a minimum threshold within which it is considered as a normal change. Anything more than the allowable change is considered as an anomaly situation. To handle this anomaly situation, again I use the same waay of using the previous confident line explained above.
+Since all the point are considered for finding the best fitting line, if there is a disturbance (shadows or patches misleading to false edge) present in the image, best fitting line affected a lot. For example, in a situation by which right edge is missing but there is some misleading patch (like shadows or reflections in below image), then my algorithm would consider it as a potential edge and line value will be calculated. So detected line will differ vastly from the real lane. To handle this I have used the following strategy. Whenever there is a change in intercept (or slope), there is a minimum threshold within which it is considered as a normal change. Anything more than the allowable change is considered as an anomaly situation. To handle this anomaly situation, again I use the same waay of using the previous confident line explained above.
 
 ![patches](https://user-images.githubusercontent.com/37708330/45771696-16242400-bc46-11e8-9ff1-fecbd877e4b5.png)
 
@@ -63,7 +63,7 @@ Since all the point are considered for finding the best fitting line, if there i
 
 **Possible Shortcomings**
 
-1. Since my previous line information is really important, initial position or the start position is expected to be in ideal condition. It means that atleast one edge should be detected when the car is started. If both the edges are missing in start position, this algorithm would not be able to handle this.
+1. Since the previous line information is really important, initial position or the start position is expected to be in ideal condition. It means that atleast one edge should be detected when the car is started. If both the edges are missing in start position, this algorithm would not be able to handle this.
 
 2. All the points in the data collected is given equal weightage. So for a small change, the line values are affected much and keeps on changing constantly which feels unstable when visualized. 
 
