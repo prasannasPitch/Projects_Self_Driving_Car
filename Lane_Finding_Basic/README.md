@@ -46,17 +46,20 @@ There is a unfortunate event when Canny edge detection could not find any edges 
 
 ![EdgeMissing](test_images/solidWhiteRight.jpg)
 
-**Case I - Result**
+**Case II - Result**
 
 ![EdgeMissing](test_images/Detected_solidWhiteRight.jpg)
 
 **Case III - Anomaly Case**
 
-![patches](https://user-images.githubusercontent.com/37708330/45771696-16242400-bc46-11e8-9ff1-fecbd877e4b5.png)
-
 Since all the point are considered for finding the best fitting line, if there is a disturbance (shadows or patches misleading to false edge) present in the image, best fitting line affected a lot. For example, in a situation by which right edge is missing but there is some misleading patch, then my algorithm would consider it as a potential edge and line value will be calculated. So detected line will differ vastly from the real lane. To handle this I have used the following strategy. Whenever there is a change in intercept (or slope), there is a minimum threshold within which it is considered as a normal change. Anything more than the allowable change is considered as an anomaly situation. To handle this anomaly situation, again I use the same waay of using the previous confident line explained above.
 
+![patches](https://user-images.githubusercontent.com/37708330/45771696-16242400-bc46-11e8-9ff1-fecbd877e4b5.png)
+
+
 **Case III - Result**
+
+![fix](https://user-images.githubusercontent.com/37708330/45772187-5041f580-bc47-11e8-8fa9-5734c8a68cd4.png)
 
 **Possible Shortcomings**
 
