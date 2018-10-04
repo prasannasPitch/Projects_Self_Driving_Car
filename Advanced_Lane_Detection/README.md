@@ -55,6 +55,7 @@ Now we have to find a position of left or right line at the bottom of binary war
 
 With the detected polynomial function, we calculated the meters space to be used here to calculate the curvature. To find the vehicle position on the center by a second order polynomial f(y)=A y^2 +B y + C, the radius of curvature is given by R = [(1+(2 Ay +B)^2 )^3/2]/|2A|. I have used the offset, curve_radius function to calculate the parameters.
 
+### Highlight Path Between Lanes
 
-
+With the detected polynomial function, we calculate the range of the lane pixels (left and right lanes). With the position,  this function `cv2.fillPoly(lane_area, points, (0,255, 0))` forms the polygon with the specified color. The polygon formed gets updated whenever the detected lane position changes. So accordingly the path of the lane gets adjusted with respect to the lane curvature. 
 
