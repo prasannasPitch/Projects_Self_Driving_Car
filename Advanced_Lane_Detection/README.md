@@ -61,5 +61,5 @@ With the detected polynomial function, we calculate the range of the lane pixels
 
 ![lane area detected](https://user-images.githubusercontent.com/37708330/46499619-df8f0180-c820-11e8-9c78-a963ce45e709.png)
 
-
+### Discussion
 
