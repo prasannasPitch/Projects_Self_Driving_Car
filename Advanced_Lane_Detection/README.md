@@ -47,12 +47,13 @@ The goal of this step is to transform the undistorted image to a "birds eye view
 
 Now we have to find a position of left or right line at the bottom of binary warped image via detection of peaks in computed histogram for bottom part of binarized image (the bottom half of binarized image). The calculated histogram is smoothed by gaussian filter and then is used for peak detection with some thresholding: one for noise filtering and other for filtering an expected distance between detected peak and expected position of line at the bottom of image. As a result, the function returns the x value of detected peak, which is used as starting point for lane detection along vertical Y direction.
 
-`find_lane_pixels` function is to find the pixels which contributes to the lane pixels. With that information,fit a second order polynomial to each lane line using `np.polyfit`.
+`find_lane_pixels` function is to find the pixels which contributes to the lane pixels. With that information, wefit a second order polynomial to each lane line using `np.polyfit`.
 
 ![curve_identified](https://user-images.githubusercontent.com/37708330/46499622-e0279800-c820-11e8-9762-42bf332e5bfd.png)
 
+### Calcualte Curvature and Offset from Centre
 
-![lane area detected](https://user-images.githubusercontent.com/37708330/46499619-df8f0180-c820-11e8-9c78-a963ce45e709.png)
+With the detected polynomial function, we calculated the meters space to be used here to calculate the curvature. To find the vehicle position on the center by a second order polynomial f(y)=A y^2 +B y + C, the radius of curvature is given by R = [(1+(2 Ay +B)^2 )^3/2]/|2A|. I have used the offset, curve_radius function to calculate the parameters.
 
 
 
