@@ -59,3 +59,7 @@ With the detected polynomial function, we calculated the meters space to be used
 
 With the detected polynomial function, we calculate the range of the lane pixels (left and right lanes). With the position,  this function `cv2.fillPoly(lane_area, points, (0,255, 0))` forms the polygon with the specified color. The polygon formed gets updated whenever the detected lane position changes. So accordingly the path of the lane gets adjusted with respect to the lane curvature. 
 
+![lane area detected](https://user-images.githubusercontent.com/37708330/46499619-df8f0180-c820-11e8-9c78-a963ce45e709.png)
+
+
+
