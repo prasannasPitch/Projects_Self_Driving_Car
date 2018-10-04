@@ -41,9 +41,19 @@ Some of the color space are :
  
 ![threshold](https://user-images.githubusercontent.com/37708330/46498313-5f1ad180-c81d-11e8-83bd-a95794e3bf08.png)
 
+### Prespective Transform and Fit Curve
+
+The goal of this step is to transform the undistorted image to a "birds eye view" of the road which focuses only on the lane lines and displays them in such a way that they appear to be relatively parallel to eachother (as opposed to the converging lines you would normally see). To achieve the perspective transformation I first applied the OpenCV functions `getPerspectiveTransform` and `warpPerspective` which take a matrix of four source points on the undistorted image and remaps them to four destination points on the warped image. The source and destination points were selected manually by visualizing the locations of the lane lines on a series of test images.
+
+Now we have to find a position of left or right line at the bottom of binary warped image via detection of peaks in computed histogram for bottom part of binarized image (the bottom half of binarized image). The calculated histogram is smoothed by gaussian filter and then is used for peak detection with some thresholding: one for noise filtering and other for filtering an expected distance between detected peak and expected position of line at the bottom of image. As a result, the function returns the x value of detected peak, which is used as starting point for lane detection along vertical Y direction.
+
+`find_lane_pixels` function is to find the pixels which contributes to the lane pixels. With that information,fit a second order polynomial to each lane line using `np.polyfit`.
+
+![curve_identified](https://user-images.githubusercontent.com/37708330/46499622-e0279800-c820-11e8-9762-42bf332e5bfd.png)
+
 
 ![lane area detected](https://user-images.githubusercontent.com/37708330/46499619-df8f0180-c820-11e8-9c78-a963ce45e709.png)
 
 
-![curve_identified](https://user-images.githubusercontent.com/37708330/46499622-e0279800-c820-11e8-9762-42bf332e5bfd.png)
+
 
