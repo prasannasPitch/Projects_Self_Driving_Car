@@ -1,5 +1,5 @@
 ## Advanced Lane Finding
-[![Udacity - Self-Driving Car NanoDegree]
+Udacity - Self-Driving Car NanoDegree
 
 The objective is to detect the lanes from the image/video and find the possible path for the car to move between the lanes. The steps followed to achieve this are :
 
@@ -20,3 +20,6 @@ Images are taken from a static camera and chess boards are placed at different l
 
  `cv2.calibrateCamera(objpoints, imgpoints, image-shape[::-1],None,None)` is the OpenCV funtion to find camera parameters. 3D points are called object points and 2D image points are called image points.
 
+### Thresholded Output
+
+![threshold](https://user-images.githubusercontent.com/37708330/46498313-5f1ad180-c81d-11e8-83bd-a95794e3bf08.png)
