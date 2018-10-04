@@ -19,7 +19,24 @@ For stereo applications, these distortions need to be corrected first. To find a
 Images are taken from a static camera and chess boards are placed at different locations and orientations. So we need to know (X,Y,Z) values. With the knowledge of point location in 3D, the corresponding 2D points can be taken and used for finding the camera parameters. 
 
  `cv2.calibrateCamera(objpoints, imgpoints, image-shape[::-1],None,None)` is the OpenCV funtion to find camera parameters. 3D points are called object points and 2D image points are called image points.
+ 
+ ![distorted](https://user-images.githubusercontent.com/37708330/46498569-13b4f300-c81e-11e8-9d8c-4ea37ac46448.png)
 
 ### Thresholded Output
 
+Now our aim is to detect only the lanes´ from the entire image. Various methods of thresholding can be applied for this image. I have used combinations of different thresholds. It could be based on gradient magnitude, direction or color space. Similarly, there exist different color space (an abstract mathematical model which simply describes the range of colors as tuples of numbers, typically as 3 or 4 values or color components e.g. RGB). 
+
+Some of the color space are :
+ * HSV 
+ * HSL
+ * LUV
+ * LAB
+ * YPbPr 
+ * YCbCr
+ * ICtCp
+ * CMYK
+ * YIQ
+ * YUV
+ * YDbDr
+ 
 ![threshold](https://user-images.githubusercontent.com/37708330/46498313-5f1ad180-c81d-11e8-83bd-a95794e3bf08.png)
