@@ -69,4 +69,4 @@ This project works well with the test image and the video given. But it is not r
 
 * In the challenge video, the lane curvature is very steep and the prespective transform finds it difficult to output a plaussible value. This can be handled by interpolating the curve for certain length. Based on that, further values could be predicted for the regions which the lane lines are vague.
 
------------update for handling challenge video is on process. To meet deadline, project is submitted now.
+-----------update for handling challenge video is on process. To meet deadline, project is submitted as of now.-------------------------------------------
