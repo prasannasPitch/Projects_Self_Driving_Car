@@ -74,4 +74,7 @@ This project works well with the test image and the video given. But it is not r
 Pipeline_Image.ipynb for Images
 Pipeline_Video.ipynb for Video
 
------------update for handling challenge video is on process. To meet deadline, project is submitted as of now.-------------------------------------------
+Output :  https://youtu.be/oyZ-jrVh1gE
+
+
+-----------update for handling challenge video is on process. To meet deadline, project is submitted as of now.-------------------------
