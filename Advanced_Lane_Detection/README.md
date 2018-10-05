@@ -1,39 +1,72 @@
 ## Advanced Lane Finding
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+Udacity - Self-Driving Car NanoDegree
 
+The objective is to detect the lanes from the image/video and find the possible path for the car to move between the lanes. The steps followed to achieve this are :
 
-In this project, your goal is to write a software pipeline to identify the lane boundaries in a video, but the main output or product we want you to create is a detailed writeup of the project.  Check out the [writeup template](https://github.com/udacity/CarND-Advanced-Lane-Lines/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup.  
+* Perform camera calibration - Find Camera matrix and the distortion coefficient through checkerboard images.
+* Threshold images to extract only lanes from image.
+* Transform images to different perspective for focusing lanes.
+* Detect lane pixels and fit to a polynomial function.
+* Determine the curvature of the lane and car position offset value with respect to center.
+* Highlight path of the car between the lanes.
 
-Creating a great writeup:
----
-A great writeup should include the rubric points as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
+### Camera Calibration
 
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
+Due to radial distortion, straight lines will appear curved. Its effect is more as we move away from the center of image. Similarly, another distortion is the tangential distortion which occurs because image taking lens is not aligned perfectly parallel to the imaging plane. So some areas in image may look nearer than expected.
 
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
+For stereo applications, these distortions need to be corrected first. To find all these parameters, what we have to do is to provide some sample images of a well defined pattern (eg, chess board). We find some specific points in it ( square corners in chess board). We know its coordinates in real world space and we know its coordinates in image. 
 
-The Project
----
+Images are taken from a static camera and chess boards are placed at different locations and orientations. So we need to know (X,Y,Z) values. With the knowledge of point location in 3D, the corresponding 2D points can be taken and used for finding the camera parameters. 
 
-The goals / steps of this project are the following:
+ `cv2.calibrateCamera(objpoints, imgpoints, image-shape[::-1],None,None)` is the OpenCV funtion to find camera parameters. 3D points are called object points and 2D image points are called image points.
+ 
+ ![distorted](https://user-images.githubusercontent.com/37708330/46498569-13b4f300-c81e-11e8-9d8c-4ea37ac46448.png)
 
-* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-* Apply a distortion correction to raw images.
-* Use color transforms, gradients, etc., to create a thresholded binary image.
-* Apply a perspective transform to rectify binary image ("birds-eye view").
-* Detect lane pixels and fit to find the lane boundary.
-* Determine the curvature of the lane and vehicle position with respect to center.
-* Warp the detected lane boundaries back onto the original image.
-* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+### Thresholded Output
 
-The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
+Now our aim is to detect only the lanes´ from the entire image. Various methods of thresholding can be applied for this image. I have used combinations of different thresholds. It could be based on gradient magnitude, direction or color space. Similarly, there exist different color space (an abstract mathematical model which simply describes the range of colors as tuples of numbers, typically as 3 or 4 values or color components e.g. RGB). 
 
-To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `output_images`, and include a description in your writeup for the project of what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
+Some of the color space are :
+ * HSV 
+ * HSL
+ * LUV
+ * LAB
+ * YPbPr 
+ * YCbCr
+ * ICtCp
+ * CMYK
+ * YIQ
+ * YUV
+ * YDbDr
+ 
+![threshold](https://user-images.githubusercontent.com/37708330/46498313-5f1ad180-c81d-11e8-83bd-a95794e3bf08.png)
 
-The `challenge_video.mp4` video is an extra (and optional) challenge for you if you want to test your pipeline under somewhat trickier conditions.  The `harder_challenge.mp4` video is another optional challenge and is brutal!
+### Prespective Transform and Fit Curve
 
-If you're feeling ambitious (again, totally optional though), don't stop there!  We encourage you to go out and take video of your own, calibrate your camera and show us how you would implement this project from scratch!
+The goal of this step is to transform the undistorted image to a "birds eye view" of the road which focuses only on the lane lines and displays them in such a way that they appear to be relatively parallel to eachother (as opposed to the converging lines you would normally see). To achieve the perspective transformation I first applied the OpenCV functions `getPerspectiveTransform` and `warpPerspective` which take a matrix of four source points on the undistorted image and remaps them to four destination points on the warped image. The source and destination points were selected manually by visualizing the locations of the lane lines on a series of test images.
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+Now we have to find a position of left or right line at the bottom of binary warped image via detection of peaks in computed histogram for bottom part of binarized image (the bottom half of binarized image). The calculated histogram is smoothed by gaussian filter and then is used for peak detection with some thresholding: one for noise filtering and other for filtering an expected distance between detected peak and expected position of line at the bottom of image. As a result, the function returns the x value of detected peak, which is used as starting point for lane detection along vertical Y direction.
 
+`find_lane_pixels` function is to find the pixels which contributes to the lane pixels. With that information, wefit a second order polynomial to each lane line using `np.polyfit`.
+
+![curve_identified](https://user-images.githubusercontent.com/37708330/46499622-e0279800-c820-11e8-9762-42bf332e5bfd.png)
+
+### Calcualte Curvature and Offset from Centre
+
+With the detected polynomial function, we calculated the meters space to be used here to calculate the curvature. To find the vehicle position on the center by a second order polynomial f(y)=A y^2 +B y + C, the radius of curvature is given by R = [(1+(2 Ay +B)^2 )^3/2]/|2A|. I have used the offset, curve_radius function to calculate the parameters.
+
+### Highlight Path Between Lanes
+
+With the detected polynomial function, we calculate the range of the lane pixels (left and right lanes). With the position,  this function `cv2.fillPoly(lane_area, points, (0,255, 0))` forms the polygon with the specified color. The polygon formed gets updated whenever the detected lane position changes. So accordingly the path of the lane gets adjusted with respect to the lane curvature. 
+
+![lane area detected](https://user-images.githubusercontent.com/37708330/46499619-df8f0180-c820-11e8-9c78-a963ce45e709.png)
+
+### Discussion
+
+This project works well with the test image and the video given. But it is not robost enough to work with the challenge video. There are two reasons for this:
+
+* This algorithm heavily depends on the image processing methods (thresholding) for lane identification. Values are tuned for the test image and videos. In the challenge video, there are certain conditions which this thresholding does not hold good. So a globalised parameters could be estimated and used in code.
+
+* In the challenge video, the lane curvature is very steep and the prespective transform finds it difficult to output a plaussible value. This can be handled by interpolating the curve for certain length. Based on that, further values could be predicted for the regions which the lane lines are vague.
+
+-----------update for handling challenge video is on process. To meet deadline, project is submitted now.
