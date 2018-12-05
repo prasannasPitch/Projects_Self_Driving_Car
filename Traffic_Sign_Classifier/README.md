@@ -215,18 +215,19 @@ Predicted Image Result : Stop
 
 
 #### Image 5:
-Original Image Result  : Road Work  
-Predicted Image Result : Double curve  
+Original Image Result  : Children crossing  
+Predicted Image Result : Children crossing  
 
 
 
 | Sign            | Probability (in percentage)                                                 |
 |------------------|-------------------------------------------------------------|
-|Double curve |  42.835137248%|
-| Dangerous curve to the left| 36.5496218204%|
-| Slippery road |  18.4379056096% |
-| Wild animals crossing |1.19076510891%|
-| Beware of ice/snow | 0.4408958368% |
+|Children crossing |  99.9964356422%|
+| Road work| 0.00124022271848%|
+| Right-of-way at the next intersection |  0.000802032718639% |
+| Beware of ice/snow |0.000777662262408%|
+| Pedestrians | 0.000555409860681% |
+
 
 #### Image 6:
 Original Image Result  : Ahead only  
