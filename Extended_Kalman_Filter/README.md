@@ -97,7 +97,8 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 
 <p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vechicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter.  </p>
 
-
+<p align="justify">
+Kalman Filter works on prediction-correction model used for linear and time-variant or time-invariant systems. Prediction model involves the actual system and the process noise .The update model involves updating the predicated or the estimated value with the observation noise. </p>
 
 ------------------------------------------------update on progress----------------------------------------------------------
 
