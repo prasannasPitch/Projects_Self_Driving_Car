@@ -67,9 +67,9 @@ The Kalman Filter algorithm will go through the following steps:
 3. **Predict**  <p align="justify"> - the algorithm will predict where the car will be after time Δt. One basic way to predict the car location after Δt is to assume the car velocity is constant; thus the car will have moved velocity Δt.</p>
 4. **Update**  <p align="justify"> - the filter compares the "predicted" location with what the sensor measurement says. The predicted location and the measured location are combined to give an updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value. The source vehicle will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.</p>
 
+![ekf_flow](https://user-images.githubusercontent.com/37708330/50034416-e4c8b380-fffc-11e8-872e-03881bfedae2.jpg)
 
-
-However, there is one major change while implementing a kalman filter with Radar and Lidar sensor. Measurement of the Lidar sensor can be fitted in linear model but measurement function of a Radar sensor cannot be fitted into linear model. The reason behind this is, while applying a Lidar measurement with a linear model, the resultant is not a normal distribution (not Gaussian as required to implement Kalman filter). For linearising the model, we use a preprocessing step to make the resultant in a normal distribution so that the kalman filter can be applied. So, an extended Kalman filter (EKF) is just an extension of Kalman that can be applied to nonlinear systems.
+However, there is one major change while implementing a kalman filter with Radar and Lidar sensor. Measurement of the Lidar sensor can be fitted in linear model but measurement function of a Radar sensor cannot be fitted into linear model. The reason behind this is, while applying a Lidar measurement with a linear model, the resultant is not a normal distribution (not Gaussian as required to implement Kalman filter). For linearising the model, we use a preprocessing step to make the resultant in a normal distribution so that the kalman filter can be applied. This modified form of kalman filter is called **Extended Kalman filter (EKF)**.  So, its just an extension of Kalman that can be applied to nonlinear systems. In this project, jacobian matrix is formed for linearising the model.
 
 ![kalman befo](https://user-images.githubusercontent.com/37708330/50035364-05dfd300-0002-11e9-9f30-2556ad379b09.png)
 Above Image : Follow the arrows from top left to bottom to top right: (1) A Gaussian from 10,000 random values in a normal distribution with a mean of 0. (2) Using a nonlinear function, arctan, to transform each value. (3) The resulting distribution.
@@ -80,8 +80,12 @@ Above Image : Follow the arrows from top left to bottom to top right: (1) A Gaus
 Above Image : After linear approximation, the resultant distribution is gaussian.
 
 
+<p align="justify">
+The code cordination happens in main.cpp then wait for Simulator to start once the connections is established
+then it starts the process flow described below. main.cpp calls FusionEFK.cpp to make initilization, update, 
+and predictions and update and prediction logic are implemented in kalman_filter.cpp. tools.cpp has an implementation 
+of RMSE and Jacobian matrix.  </p>
 
-![ekf_flow](https://user-images.githubusercontent.com/37708330/50034416-e4c8b380-fffc-11e8-872e-03881bfedae2.jpg)
 
 
 
