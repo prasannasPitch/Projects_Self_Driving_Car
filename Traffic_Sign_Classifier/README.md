@@ -149,7 +149,7 @@ We should initialize the weights with small random numbers to prevent dead neuro
 Dropout is a preferable regularization technique to avoid overfitting in deep neural networks. The method simply drops out units in neural network according to the desired probability. A default value of 0.5 is a good choice to test with. In this model, adding dropout improved the accuracy of the model as it induces nonlinearity in the model.
 
 #### Prediction with new images
-11 images from downloaded from internet. These images are not seen by the model during the training phase. We analyze the performance of of the model based on these 11 images given below.
+11 sample images are downloaded from internet. These images are not seen by the model during the training phase. We analyze the performance of of the model based on these 11 images given below.
 
 
 ![unseen](https://user-images.githubusercontent.com/37708330/49471550-7c642000-f80d-11e8-9928-0e01b40c04a5.png)
