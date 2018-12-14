@@ -22,7 +22,7 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 
 ## Sensor Fusion by Kalman Filter:
 
-<p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vechicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter.  </p>
+<p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vechicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter. In this project, we use kalman filter to track a moving car from a source vehicle. </p>
 
 <p align="justify">
 Kalman Filter works on prediction-correction model used for linear and time-variant or time-invariant systems. State prediction model involves the actual system and the process noise .The Measurement update model involves updating the predicated or the estimated value with the observation noise. </p>
@@ -50,7 +50,7 @@ Till now we have discussed about why kalman filters are used for tracking proble
 
 ### Radar Measurement :
 
-- The range, (ρ), is the distance to the pedestrian. The range is basically the magnitude of the position vector ρ which can be defined as ρ=sqrt(p​x​2​​+p​y​2​​).
+- The range, (ρ), is the distance to the observed car. The range is basically the magnitude of the position vector ρ which can be defined as ρ=sqrt(p​x​2​​+p​y​2​​).
 - φ=atan(p​y​​/p​x​​). Note that φ is referenced counter-clockwise from the x-axis, so φ from the video clip above in that situation would actually be negative.
 - The range rate, ​ρ​˙​​, is the projection of the velocity, v, onto the line, L.
 
@@ -68,6 +68,8 @@ The Kalman Filter algorithm will go through the following steps:
 4. **Update**  <p align="justify"> - the filter compares the "predicted" location with what the sensor measurement says. The predicted location and the measured location are combined to give an updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value. The source vehicle will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.</p>
 
 ![ekf_flow](https://user-images.githubusercontent.com/37708330/50034416-e4c8b380-fffc-11e8-872e-03881bfedae2.jpg)
+
+However, there is one major change while implementing a kalman filter with Radar and Lidar sensor. The Lidar sensor gets the point cloud values in cartesian coordinates and so a direct linear 
 
 
 
