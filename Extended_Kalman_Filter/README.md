@@ -43,9 +43,9 @@ Till now we have discussed about why kalman filters are used for tracking proble
 <p align="justify">
 - H is the matrix that projects your belief about the object current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector x contains information about [p​x​​,p​y​​,v​x​​,v​y​​] whereas the z vector will only contain [px,py]. Multiplying Hx allows us to compare x, our belief, with z, the sensor measurement.</p>
 
-<p align="justify">
+
 ![lildar_meas](https://user-images.githubusercontent.com/37708330/50017874-c0091780-ffcd-11e8-9a1f-d96a0c7ab46e.png)
-</p>
+
 
 
 ### Radar Measurement :
@@ -55,9 +55,7 @@ Till now we have discussed about why kalman filters are used for tracking proble
 - The range rate, ​ρ​˙​​, is the projection of the velocity, v, onto the line, L.
 
 
-<p align="justify">
 ![radar_meas](https://user-images.githubusercontent.com/37708330/50017876-c13a4480-ffcd-11e8-8230-86e570b94b33.PNG)
-</p>
 
 ## Design of Kalman Filter & Extended Kalman Filter :
 
