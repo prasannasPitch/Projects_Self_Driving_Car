@@ -61,13 +61,13 @@ Till now we have discussed about why kalman filters are used for tracking proble
 
 The Kalman Filter algorithm will go through the following steps:
 
-1. **First measurement** - the filter will receive initial measurements of the car position relative to the source vehicle. These measurements will come from a radar or lidar sensor.
-2. **Initialize state and covariance matrices** - the filter will initialize the car position based on the first measurement.
-then the source vehicle will receive another sensor measurement after a time period Δt.
-3. **Predict** - the algorithm will predict where the car will be after time Δt. One basic way to predict the car location after Δt is to assume the car velocity is constant; thus the car will have moved velocity Δt.
-4. **Update** - the filter compares the "predicted" location with what the sensor measurement says. The predicted location and the measured location are combined to give an updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value. The source vehicle will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.
+1. **First measurement** <p align="justify"> - the filter will receive initial measurements of the car position relative to the source vehicle. These measurements will come from a radar or lidar sensor.</p>
+2. **Initialize state and covariance matrices**  <p align="justify"> - the filter will initialize the car position based on the first measurement. Then the source vehicle will receive another sensor measurement after a time period Δt.</p>
+ 
+3. **Predict**  <p align="justify"> - the algorithm will predict where the car will be after time Δt. One basic way to predict the car location after Δt is to assume the car velocity is constant; thus the car will have moved velocity Δt.</p>
+4. **Update**  <p align="justify"> - the filter compares the "predicted" location with what the sensor measurement says. The predicted location and the measured location are combined to give an updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value. The source vehicle will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.</p>
 
-
+![ekf_flow](https://user-images.githubusercontent.com/37708330/50034416-e4c8b380-fffc-11e8-872e-03881bfedae2.jpg)
 
 
 
