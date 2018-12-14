@@ -27,8 +27,8 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 <p align="justify">
 Kalman Filter works on prediction-correction model used for linear and time-variant or time-invariant systems. State prediction model involves the actual system and the process noise .The Measurement update model involves updating the predicated or the estimated value with the observation noise. </p>
 
-<p align="justify">
-![2step](https://user-images.githubusercontent.com/37708330/50016920-d6fa3a80-ffca-11e8-8a80-6fa0384adf5a.png) </p>
+
+![2step](https://user-images.githubusercontent.com/37708330/50016920-d6fa3a80-ffca-11e8-8a80-6fa0384adf5a.png) 
 
 ## Measurements from Sensors:
 <p align="justify">
@@ -59,7 +59,13 @@ Till now we have discussed about why kalman filters are used for tracking proble
 
 ## Design of Kalman Filter & Extended Kalman Filter :
 
+The Kalman Filter algorithm will go through the following steps:
 
+1. **First measurement** - the filter will receive initial measurements of the car position relative to the source vehicle. These measurements will come from a radar or lidar sensor.
+2. **Initialize state and covariance matrices** - the filter will initialize the car position based on the first measurement.
+then the source vehicle will receive another sensor measurement after a time period Δt.
+3. **Predict** - the algorithm will predict where the car will be after time Δt. One basic way to predict the car location after Δt is to assume the car velocity is constant; thus the car will have moved velocity Δt.
+4. **Update** - the filter compares the "predicted" location with what the sensor measurement says. The predicted location and the measured location are combined to give an updated location. The Kalman filter will put more weight on either the predicted location or the measured location depending on the uncertainty of each value. The source vehicle will receive another sensor measurement after a time period Δt. The algorithm then does another predict and update step.
 
 
 
