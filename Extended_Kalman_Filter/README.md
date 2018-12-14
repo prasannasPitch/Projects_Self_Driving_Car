@@ -98,9 +98,17 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 <p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vechicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter.  </p>
 
 <p align="justify">
-Kalman Filter works on prediction-correction model used for linear and time-variant or time-invariant systems. Prediction model involves the actual system and the process noise .The update model involves updating the predicated or the estimated value with the observation noise. </p>
+Kalman Filter works on prediction-correction model used for linear and time-variant or time-invariant systems. State prediction model involves the actual system and the process noise .The Measurement update model involves updating the predicated or the estimated value with the observation noise. </p>
 
 ![2step](https://user-images.githubusercontent.com/37708330/50016920-d6fa3a80-ffca-11e8-8a80-6fa0384adf5a.png)
+
+## Measurements from Sensors:
+
+Till now we have discussed about why kalman filters are used for tracking problem. Before we dive into the working of kalman filter, we need to know what all are the necessary inputs and preprocessing steps involved in the measurements.
+
+- z = transpose (px py) is the measurement vector. For a lidar sensor, the z vector contains the position−x and position−y measurements.
+
+- H is the matrix that projects your belief about the object current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector x contains information about [p​x​​,p​y​​,v​x​​,v​y​​] whereas the z vector will only contain [px,py]. Multiplying Hx allows us to compare x, our belief, with z, the sensor measurement.
 
 
 ------------------------------------------------update on progress----------------------------------------------------------
