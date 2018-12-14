@@ -106,9 +106,22 @@ Kalman Filter works on prediction-correction model used for linear and time-vari
 
 Till now we have discussed about why kalman filters are used for tracking problem. Before we dive into the working of kalman filter, we need to know what all are the necessary inputs and preprocessing steps involved in the measurements.
 
+### Lidar Measurement :
 - z = transpose (px py) is the measurement vector. For a lidar sensor, the z vector contains the position−x and position−y measurements.
 
 - H is the matrix that projects your belief about the object current state into the measurement space of the sensor. For lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position: The state vector x contains information about [p​x​​,p​y​​,v​x​​,v​y​​] whereas the z vector will only contain [px,py]. Multiplying Hx allows us to compare x, our belief, with z, the sensor measurement.
+
+![lildar_meas](https://user-images.githubusercontent.com/37708330/50017874-c0091780-ffcd-11e8-9a1f-d96a0c7ab46e.png)
+
+
+### Radar Measurement :
+- The range, (ρ), is the distance to the pedestrian. The range is basically the magnitude of the position vector ρ which can be defined as ρ=sqrt(p​x​2​​+p​y​2​​).
+- φ=atan(p​y​​/p​x​​). Note that φ is referenced counter-clockwise from the x-axis, so φ from the video clip above in that situation would actually be negative.
+- The range rate, ​ρ​˙​​, is the projection of the velocity, v, onto the line, L.
+
+
+
+![radar_meas](https://user-images.githubusercontent.com/37708330/50017876-c13a4480-ffcd-11e8-8230-86e570b94b33.PNG)
 
 
 ------------------------------------------------update on progress----------------------------------------------------------
