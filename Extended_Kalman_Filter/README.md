@@ -80,12 +80,11 @@ Above Image : After linear approximation, the resultant distribution is gaussian
 
 ## Code Flow :
 
-<p align="justify">
-- main.cpp - reads in data, runs the Kalman filter and calculates RMSE values after each measurement.
-- FusionEKF.cpp - initializes the filter, calls the Predict function and the Update function
-- kalman_filter.cpp- implementation of the Predict and Update function, for both lidar and radar.
-- tools.cpp - tool functions to calculate RMSE and the Jacobian matrix, used to convert polar to cartesian coordinates
- </p>
+
+* main.cpp - reads in data, runs the Kalman filter and calculates RMSE values after each measurement.
+* FusionEKF.cpp - initializes the filter, calls the Predict function and the Update function
+* kalman_filter.cpp - implementation of the Predict and Update function, for both lidar and radar.
+* tools.cpp - tool functions to calculate RMSE and the Jacobian matrix, used to convert polar to cartesian coordinates
 
 ![codeflow](https://user-images.githubusercontent.com/37708330/50035724-1729df00-0004-11e9-8f31-8fe55938f840.png)
 
@@ -103,22 +102,16 @@ The folowing table lists the results of both datasets:
 
 | RMSE | Dataset 1 | Dataset 2 |
 |------|-----------|-----------|
-| P x  |  0.1405   |  0.0732   |
-| P y  |  0.6668   |  0.0963   |
-| V x  |  0.6050   |  0.3813   |
-| V y  |  1.6355   |  0.4782   |
+| P x  |  0.0973   |  0.0726   |
+| P y  |  0.0855   |  0.0965   |
+| V x  |  0.4513   |  0.4216   |
+| V y  |  0.4399   |  0.4932   |
 
-This is somehow unexpected as the dataset 1 should be the "easy" one to which every
-implementation should be able to get results below the desired marks, and dataset 2
-should be the "hard" one, showcasing a more precise implementation.
-
-It is unclear at the moment why this is the case.
+The rmse error results are well below the error threshold mentioned in the requirements of this project.
 
 #### Using only one senor
 
 For both datasets a run with only one sensor, `radar` or `lidar` was also measured. 
-
-> You can test this yourself by setting the vars `use_laser_` and `use_radar_` in `src/FusionEKF.cpp`.
 
 Here are the results:
 
@@ -126,10 +119,10 @@ Here are the results:
 
 | RMSE | only RADAR | only LIDAR |
 |------|-----------|-----------|
-| P x  |  11.5299   |  0.1473   |
-| P y  |  7.9951   |  0.1152   |
-| V x  |  9.9502   |  0.6781   |
-| V y  |  8.8659   |  0.5324   |
+| P x  |  0 2302   |  0.1473   |
+| P y  |  0.3464   |  0.1153   |
+| V x  |  0.5835   |  0.6383   |
+| V y  |  0.8040   |  0.5346   |
 
 Interesting points here:
 - It behaves better with only `Lidar` than with both sensors, indicating tha the `Radar` measurements hurt more then help the prediction.
@@ -139,10 +132,10 @@ Interesting points here:
 
 | RMSE | only RADAR | only LIDAR |
 |------|-----------|-----------|
-| P x  |  0.2706   |  0.1167   |
-| P y  |  0.3869   |  0.1256   |
-| V x  |  0.6780   |  0.5929   |
-| V y  |  0.9585   |  0.5774   |
+| P x  |  0.2706   |  0.1169   |
+| P y  |  0.3853   |  0.1262   |
+| V x  |  0.6524   |  0.6231   |
+| V y  |  0.9218   |  0.6030   |
 
 A few points of interest:
 - This time it behaves slightly worse with only `Lidar` data then with both.
