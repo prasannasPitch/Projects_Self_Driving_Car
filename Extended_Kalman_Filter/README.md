@@ -10,7 +10,7 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 - Lidar is the master of 3D mapping. Lidar, short for light detection and ranging, is a technology that measures distance using laser light. The technology can scan more than 100 meters in all directions, generating a precise 3D map of the car’s surroundings. This information is then used by car to make intelligent decisions about what to do next. The problem with lidar is that they generate a large amount of data and are still quite expensive for OEMs to cheaply implement. </p>
 
 <p align="justify">
-- Radar is the master of motion measurement. Radar, short for radio detection and ranging, is a sensor system that uses radio waves to determine the velocity, range and angle of objects. Radar is computationally lighter than a camera and uses far less data than a Lidar. While less angularly accurate than lidar, radar can work in every condition and even use reflection to see behind obstacles. Modern self-driving prototypes rely on radar and lidar to “cross validate” what they’re seeing and to predict motion.  </p>
+- Radar is the master of motion measurement. Radar, short for radio detection and ranging, is a sensor system that uses radio waves to determine the velocity, range and angle of objects (Doppler Effect). Radar is computationally lighter than a camera and uses far less data than a Lidar. While less angularly accurate than lidar, radar can work in every condition and even use reflection to see behind obstacles. Modern self-driving prototypes rely on radar and lidar to “cross validate” what they’re seeing and to predict motion.  </p>
 
 <p align="justify">
 - Cameras are the master of classification and texture interpretation. By far the cheapest and most available sensor (but not the cheapest processing), cameras use massive amounts of data (full HD means millions of pixel or Megabytes at every frame), making processing a computational intense and algorithmically complex job. Unlike both lidar and radar, cameras can see color, making them the best for scene interpretation.
@@ -124,10 +124,7 @@ Here are the results:
 | V x  |  0.5835   |  0.6383   |
 | V y  |  0.8040   |  0.5346   |
 
-Interesting points here:
-- It behaves better with only `Lidar` than with both sensors, indicating tha the `Radar` measurements hurt more then help the prediction.
-- The issues with `Radar` measurements appear more prevalent to be on the `y` axis. Unclear why this is the case at this moment.
-
+ 
 ##### Dataset 2
 
 | RMSE | only RADAR | only LIDAR |
@@ -137,14 +134,15 @@ Interesting points here:
 | V x  |  0.6524   |  0.6231   |
 | V y  |  0.9218   |  0.6030   |
 
-A few points of interest:
-- This time it behaves slightly worse with only `Lidar` data then with both.
-- Again it behaves better with only `Lidar` then with only `Radar` data. 
-- The discrepancy between axis `x` and `y` is not so apparent if present at all. 
+### Key Points :
+
+- Higer RMSE value obtained when only one sensor is considered which proves the importance of sensor fusion.
+- As exptected, RADAR has higher RMSE error compared to LIDAR. 
+- The issues with RADAR measurements appear more prevalent to be on the `y` axis.
 
 ### Images from the simulator
 
-## With both `Radar` and `Lidar` data.
+### With both RADAR and LIDAR measurement.
 
 #### Dataset 1
 ![result dataset1](https://user-images.githubusercontent.com/37708330/50043516-c18e1a80-0075-11e9-958c-b4dcdb50d331.PNG)
@@ -152,7 +150,7 @@ A few points of interest:
 #### Dataset 2
 ![result dataset2](https://user-images.githubusercontent.com/37708330/50043511-c0f58400-0075-11e9-9122-fd0c57e29494.PNG)
 
-## With only one Sensor.
+### With only one measurement.
 
 #### Dataset 1 RADAR
 
@@ -172,8 +170,6 @@ A few points of interest:
 
 ![laser dataset2](https://user-images.githubusercontent.com/37708330/50043513-c0f58400-0075-11e9-8d5d-f389b68088f8.PNG)
 
-
-------------------------------------------------update on progress----------------------------------------------------------
 
 ## Setting up the project :
 In this project you will utilize a kalman filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower than the tolerance outlined in the project rubric. 
@@ -248,3 +244,8 @@ for instructions and the project rubric.
 ## Note!
 
  * Please note that the ```Eigen``` library does not initialize ```VectorXd``` or ```MatrixXd``` objects with zeros upon creation.
+ 
+ ## References :
+ 
+ 1. https://www.eetimes.com/author.asp?section_id=36&doc_id=1330069
+ 2. [Lecture Notes on Kalman](https://www.udacity.com/file?file_key=agpzfnVkYWNpdHl1ckcLEgZDb3Vyc2UiBWNzMzczDAsSCUNvdXJzZVJldiIHZmViMjAxMgwLEgRVbml0GJbIAgwLEgxBdHRhY2hlZEZpbGUYwaAKDA)
