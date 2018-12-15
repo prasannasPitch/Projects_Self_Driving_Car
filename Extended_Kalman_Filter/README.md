@@ -69,38 +69,97 @@ The Kalman Filter algorithm will go through the following steps:
 
 ![ekf_flow](https://user-images.githubusercontent.com/37708330/50034416-e4c8b380-fffc-11e8-872e-03881bfedae2.jpg)
 
-However, there is one major change while implementing a kalman filter with Radar and Lidar sensor. Measurement of the Lidar sensor can be fitted in linear model but measurement function of a Radar sensor cannot be fitted into linear model. The reason behind this is, while applying a Lidar measurement with a linear model, the resultant is not a normal distribution (not Gaussian as required to implement Kalman filter). For linearising the model, we use a preprocessing step to make the resultant in a normal distribution so that the kalman filter can be applied. This modified form of kalman filter is called **Extended Kalman filter (EKF)**.  So, its just an extension of Kalman that can be applied to nonlinear systems. In this project, jacobian matrix is formed for linearising the model.
+<p align="justify">  However, there is one major change while implementing a kalman filter with Radar and Lidar sensor. Measurement of the Lidar sensor can be fitted in linear model but measurement function of a Radar sensor cannot be fitted into linear model. The reason behind this is, while applying a Lidar measurement with a linear model, the resultant is not a normal distribution (not Gaussian as required to implement Kalman filter). For linearising the model, we use a preprocessing step to make the resultant in a normal distribution so that the kalman filter can be applied. This modified form of kalman filter is called **Extended Kalman filter (EKF)**.  So, its just an extension of Kalman that can be applied to nonlinear systems. In this project, jacobian matrix is formed for linearising the model.</p>
 
 ![kalman befo](https://user-images.githubusercontent.com/37708330/50035364-05dfd300-0002-11e9-9f30-2556ad379b09.png)
 Above Image : Follow the arrows from top left to bottom to top right: (1) A Gaussian from 10,000 random values in a normal distribution with a mean of 0. (2) Using a nonlinear function, arctan, to transform each value. (3) The resulting distribution.
 
 
-
 ![kalman_aft](https://user-images.githubusercontent.com/37708330/50035367-07a99680-0002-11e9-9471-8a71853e7afb.png)
 Above Image : After linear approximation, the resultant distribution is gaussian.
 
+## Code Flow :
 
 <p align="justify">
-The code cordination happens in main.cpp then wait for Simulator to start once the connections is established
-then it starts the process flow described below. main.cpp calls FusionEFK.cpp to make initilization, update, 
-and predictions and update and prediction logic are implemented in kalman_filter.cpp. tools.cpp has an implementation 
-of RMSE and Jacobian matrix.  </p>
+- main.cpp - reads in data, runs the Kalman filter and calculates RMSE values after each measurement.
+- FusionEKF.cpp - initializes the filter, calls the Predict function and the Update function
+- kalman_filter.cpp- implementation of the Predict and Update function, for both lidar and radar.
+- tools.cpp - tool functions to calculate RMSE and the Jacobian matrix, used to convert polar to cartesian coordinates
+ </p>
 
 ![codeflow](https://user-images.githubusercontent.com/37708330/50035724-1729df00-0004-11e9-8f31-8fe55938f840.png)
 
+## Result :
 
+The success metrics for this project are the RMSE values for 2 datasets.
 
+The values shoule be below:
+- `0.11` for `P x` and `P y`.
+- `0.52` for `V x` and `V y`.
 
+### RMSE values
 
+The folowing table lists the results of both datasets:
 
+| RMSE | Dataset 1 | Dataset 2 |
+|------|-----------|-----------|
+| P x  |  0.1405   |  0.0732   |
+| P y  |  0.6668   |  0.0963   |
+| V x  |  0.6050   |  0.3813   |
+| V y  |  1.6355   |  0.4782   |
 
+This is somehow unexpected as the dataset 1 should be the "easy" one to which every
+implementation should be able to get results below the desired marks, and dataset 2
+should be the "hard" one, showcasing a more precise implementation.
 
+It is unclear at the moment why this is the case.
 
+#### Using only one senor
 
+For both datasets a run with only one sensor, `radar` or `lidar` was also measured. 
 
+> You can test this yourself by setting the vars `use_laser_` and `use_radar_` in `src/FusionEKF.cpp`.
 
+Here are the results:
 
+##### Dataset 1
 
+| RMSE | only RADAR | only LIDAR |
+|------|-----------|-----------|
+| P x  |  11.5299   |  0.1473   |
+| P y  |  7.9951   |  0.1152   |
+| V x  |  9.9502   |  0.6781   |
+| V y  |  8.8659   |  0.5324   |
+
+Interesting points here:
+- It behaves better with only `Lidar` than with both sensors, indicating tha the `Radar` measurements hurt more then help the prediction.
+- The issues with `Radar` measurements appear more prevalent to be on the `y` axis. Unclear why this is the case at this moment.
+
+##### Dataset 2
+
+| RMSE | only RADAR | only LIDAR |
+|------|-----------|-----------|
+| P x  |  0.2706   |  0.1167   |
+| P y  |  0.3869   |  0.1256   |
+| V x  |  0.6780   |  0.5929   |
+| V y  |  0.9585   |  0.5774   |
+
+A few points of interest:
+- This time it behaves slightly worse with only `Lidar` data then with both.
+- Again it behaves better with only `Lidar` then with only `Radar` data. 
+- The discrepancy between axis `x` and `y` is not so apparent if present at all. 
+
+### Images from the simulator
+
+> With both `Radar` and `Lidar` data.
+
+#### Dataset 1
+
+![alt text](results/EKF-dataset-1.png "Dataset 1")
+
+#### Dataset 2
+
+![alt text](results/EKF-dataset-2.png "Dataset 2")
 
 
 ------------------------------------------------update on progress----------------------------------------------------------
