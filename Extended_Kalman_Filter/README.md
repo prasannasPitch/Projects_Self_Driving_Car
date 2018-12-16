@@ -1,7 +1,17 @@
 # Sensor fusion by Extended Kalman Filter Project
 Self-Driving Car Engineer Nanodegree Program
 
-## Motiavation for Lidar & Radar Sensors
+## Table Content: ##
+- [Motiavation for Lidar & Radar Sensors](#motivation)
+- [Sensor Fusion by Kalman Filter](#fusion)
+- [Measurements from Sensors](#sensor_meas)
+- [Design of Kalman Filter & Extended Kalman Filter](#design)
+- [Code Flow](#code)
+- [Result](#result)
+- [Setting up the project](#setup)
+
+
+## Motiavation for Lidar & Radar Sensors: <a name="motivation"></a>
 
 <p align="justify">
 As we approach towards level autonomous 4-5, the number of sensors in a car increases as the parallel processing shows efficient competence , but which types of sensor will be the most effective for perception and localization? </p>
@@ -20,9 +30,9 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 ![classification](https://user-images.githubusercontent.com/37708330/50005132-8a523780-ffa9-11e8-8229-aaf60b765043.png)
 
 
-## Sensor Fusion by Kalman Filter:
+## Sensor Fusion by Kalman Filter:<a name="fusion"></a>
 
-<p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vechicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter. In this project, we use kalman filter to track a moving car from a source vehicle. </p>
+<p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vehicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter. In this project, we use kalman filter to track a moving car from a source vehicle. </p>
 
 <p align="justify">
 Kalman Filter works on prediction-correction model used for linear and time-variant or time-invariant systems. State prediction model involves the actual system and the process noise .The Measurement update model involves updating the predicated or the estimated value with the observation noise. </p>
@@ -30,7 +40,7 @@ Kalman Filter works on prediction-correction model used for linear and time-vari
 
 ![2step](https://user-images.githubusercontent.com/37708330/50016920-d6fa3a80-ffca-11e8-8a80-6fa0384adf5a.png) 
 
-## Measurements from Sensors:
+## Measurements from Sensors: <a name="sensor_meas"></a>
 <p align="justify">
 Till now we have discussed about why kalman filters are used for tracking problem. Before we dive into the working of kalman filter, we need to know what all are the necessary inputs and preprocessing steps involved in the measurements.</p>
 
@@ -57,7 +67,7 @@ Till now we have discussed about why kalman filters are used for tracking proble
 
 ![radar_meas](https://user-images.githubusercontent.com/37708330/50017876-c13a4480-ffcd-11e8-8230-86e570b94b33.PNG)
 
-## Design of Kalman Filter & Extended Kalman Filter :
+## Design of Kalman Filter & Extended Kalman Filter : <a name="design"></a>
 
 The Kalman Filter algorithm will go through the following steps:
 
@@ -78,7 +88,7 @@ Above Image : Follow the arrows from top left to bottom to top right: (1) A Gaus
 ![kalman_aft](https://user-images.githubusercontent.com/37708330/50035367-07a99680-0002-11e9-9471-8a71853e7afb.png)
 Above Image : After linear approximation, the resultant distribution is gaussian.
 
-## Code Flow :
+## Code Flow : <a name="code"></a>
 
 
 * main.cpp - reads in data, runs the Kalman filter and calculates RMSE values after each measurement.
@@ -88,7 +98,7 @@ Above Image : After linear approximation, the resultant distribution is gaussian
 
 ![codeflow](https://user-images.githubusercontent.com/37708330/50035724-1729df00-0004-11e9-8f31-8fe55938f840.png)
 
-## Result :
+## Result :<a name="result"></a>
 
 The success metrics for this project are the RMSE values for 2 datasets.
 
@@ -171,7 +181,7 @@ Here are the results:
 ![laser dataset2](https://user-images.githubusercontent.com/37708330/50043513-c0f58400-0075-11e9-8d5d-f389b68088f8.PNG)
 
 
-## Setting up the project :
+## Setting up the project :<a name="setup"></a>
 In this project you will utilize a kalman filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower than the tolerance outlined in the project rubric. 
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
