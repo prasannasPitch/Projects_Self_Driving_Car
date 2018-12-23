@@ -7,8 +7,8 @@ Self-Driving Car Engineer Nanodegree Program
 - [Data Exploration](#data_explore)
 - [Preprocessing Step](#preprocess)
 - [Model Architecture](#model)
-- [Files](#files)
 - [Result](#result)
+- [Files](#files)
 
 ## Motivation for Behavioral Cloning <a name="motivation"></a>
 <p align="justify">
