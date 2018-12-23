@@ -8,7 +8,6 @@ Self-Driving Car Engineer Nanodegree Program
 - [Preprocessing Step](#preprocess)
 - [Model Architecture](#model)
 - [Files](#files)
-- [Code Flow](#code)
 - [Result](#result)
 
 ## Motivation for Behavioral Cloning <a name="motivation"></a>
@@ -131,7 +130,7 @@ The final model consists of:
 - Correction factor- 0.2
 - Loss Function Used- MSE (Regression problem)
 
-## Result
+## Result <a name="result"></a>
 
 The model was able to navigate in the track 1 without running outside of the road.
 
@@ -149,7 +148,7 @@ Full Video : [Video_Link](https://youtu.be/FjCaN85yhng)
 
 
 
-## Dependencies
+### Dependencies
 This lab requires:
 
 * [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
@@ -163,7 +162,7 @@ The following resources can be found in this github repository:
 
 The simulator can be downloaded from the classroom. In the classroom, we have also provided sample data that you can optionally use to help train your model.
 
-## Details About Files In This Directory
+### Details About Files In This Directory
 
 Usage of `drive.py` requires you have saved the trained model as an h5 file, i.e. `model.h5`. See the [Keras documentation](https://keras.io/getting-started/faq/#how-can-i-save-a-keras-model) for how to create this file using the following command:
 ```sh
