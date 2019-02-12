@@ -133,6 +133,25 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
    *   and the following is a good resource for the actual equation to implement
    *   (look at equation 3.33) http://planning.cs.uiuc.edu/node99.html
    */
+   
+   
+   double std_x = std_landmark[0];
+	double std_y = std_landmark[1];
+	double dist_;
+
+	for(int i=0; i < num_particles; i++){
+		for(int j=0; j < map_landmarks.landmark_list.size(); j++){
+			dist_ = dist(particles[i].x, particles[i].y, map_landmarks.landmark_list[j].x_f, map_landmarks.landmark_list[j].y_f);
+
+			if( dist_ <= sensor_range ) {
+				LandmarkObs l_;
+				l_.id = map_landmarks.landmark_list[j].id_i;
+				l_.x = map_landmarks.landmark_list[j].x_f;
+				l_.y = map_landmarks.landmark_list[j].y_f;
+				marks.push_back(l_);
+			}
+		}
+
 
 }
 
