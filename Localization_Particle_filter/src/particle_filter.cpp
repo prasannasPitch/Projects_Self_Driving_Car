@@ -163,6 +163,24 @@ void ParticleFilter::resample() {
    *   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
    */
 
+	vector<double> weights;
+	double mw = numeric_limits<double>::min();
+
+	for(int i =0; i < num_particles; i++){
+		weights.push_back(particles[i].weight);
+		if(particles[i].weight > mw)
+			mw = particles[i].weight;
+	}
+
+	random_device seed;
+	mt19937 random_generator(seed());
+	// sample particles based on their weight
+	discrete_distribution<> sample(weights.begin(), weights.end());
+	vector<Particle> new_particles(num_particles);
+	for(auto & p : new_particles)
+		p = particles[sample(random_generator)];
+	
+	particles = move(new_particles);
 }
 
 void ParticleFilter::SetAssociations(Particle& particle, 
