@@ -182,6 +182,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 			p.weight = prob;
 			weights.at(i) = p.weight;
 		}
+		SetAssociations(particles,associations,sense_x,sense_y);
 	}
 
 }
