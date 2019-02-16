@@ -7,7 +7,7 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 ## Table Content: ##
 - [Motivation for Particle Filter](#motivation)
 - [Implentation of Particle Filter](#imp)
-- [Data Exploration](#data_explore)
+- [Pseudo Code  Explaination](#psu)
 - [Preprocessing Step](#preprocess)
 - [Model Architecture](#model)
 - [Result](#result)
@@ -15,7 +15,7 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 
 
 ## Motivation for Particle Filter <a name="motivation"></a>
-Before diving into particle filter, localization could be recalled. As the table given below, eventhough both sensor fusion and localization goal is to predict the location of a moving vehicle, it should be clear to know the similarities and the difference between these concepts.
+Before diving into particle filter, we recall the concept of localization. As the table given below, eventhough both sensor fusion and localization goal is to predict the location of a moving vehicle, it should be clear to know the similarities and the difference between these concepts.
 
 | Localization            | Sensor Fusion                                                 |
 |------------------|-------------------------------------------------------------|
@@ -28,11 +28,43 @@ Before diving into particle filter, localization could be recalled. As the table
 Localization of an object within a given map can be effected by probabilistic filter methods. One such filter is a particle filter - uses a random sampling method to generate different system states & then assign high weights to those state that are supported by sensor data. It is oftenly used for non-linear system and very easy to implement.
  </p>
  
- ## Implementation of Particle Filter<a name="motivation"></a>
+ ## Implementation of Particle Filter<a name="imp"></a>
+ 
+ 
+![image](https://user-images.githubusercontent.com/37708330/52903657-f444c280-3220-11e9-812c-d40fd60c681a.png)
  
  <p align="justify">
  The main objective of a particle filter is to tracka  variable of interest as it evolves over time, typically with a non Gaussian and potentially multi-modal PDF. The basis of the method is to construct a sample-based representation fo fthe entire PDF. A series of actions are taken, each one modifying the state of the variable of interest accordifngn to some model. Moreover at certain times an observation arrives that constrains the state of the variable of interest at that time. Multiple copies (particles) of the variable of interest are used, each onen associated with a weight that signifies the quality of the specific particle. An estimate of the variable of interest is obtained by the weighted sum of all the particles. The particel filter algorithm is recursive in nature and operates in two phases. 1. Prediction 2. Update. After each action, each partilce is modfied according to the existing model (prediction stage), including the addition of random noise in order to simulate the effect of noise on the variable of interest. Then, each particles weight is re-evaluated based on the latest sensory informatioin available. At times the particles with samll weights are eliminated, a process called resampling. 
  </p>
+
+## Pseudocode  Explanation<a name="psu"></a>
+
+
+![image](https://user-images.githubusercontent.com/37708330/52903692-95cc1400-3221-11e9-945c-2fd7250307eb.png)
+ <p align="justify">
+This is an outline of steps you will need to take with your code in order to implement a particle filter for localizing an autonomous vehicle. The pseudo code steps correspond to the steps in the algorithm flow chart, initialization, prediction, particle weight updates, and resampling.
+ 
+ 1. At the initialization step we estimate our position from GPS input. The subsequent steps in the process will refine this estimate to localize our vehicle.
+
+2. During the prediction step we add the control input (yaw rate & velocity) for all particles.
+
+3. During the update step, we update our particle weights using map landmark positions and feature measurements.
+
+4. During resampling we will resample M times (M is range of 0 to length_of_particleArray) drawing a particle i (i is the particle index) proportional to its weight.
+
+5. The new set of particles represents the Bayes filter posterior probability. We now have a refined estimate of the vehicles position based on input evidence.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
