@@ -1,18 +1,38 @@
 # Localization of Kidnapped Vehicle Project
 Self-Driving Car Engineer Nanodegree Program
+<p align="justify">
+The goal of the project is to localize the movement of the kidnapped vehicle  with a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data. In this project, a 2 dimensional particle filter is implemented in C++. The particle filter is given a map and some initial localization information (analogous to what a GPS would provide). At each time step the filter, it will also get observation and control data.
+</p>
 
 ## Table Content: ##
-- [Project Introduction](intro)
-- [Motivation for Behavioral Cloning](#motivation)
-- [Collection of Training Data - Simulator](#sim)
+- [Motivation for Particle Filter](#motivation)
+- [Implentation of Particle Filter](#imp)
 - [Data Exploration](#data_explore)
 - [Preprocessing Step](#preprocess)
 - [Model Architecture](#model)
 - [Result](#result)
 - [Files](#files)
 
-## Project Introduction  <a name="intro"></a>
-The goal of the project is to localize the movement of the kidnapped vehicle  with a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data. In this project, a 2 dimensional particle filter is implemented in C++. The particle filter is given a map and some initial localization information (analogous to what a GPS would provide). At each time step the filter, it will also get observation and control data.
+
+## Motivation for Particle Filter <a name="motivation"></a>
+Before diving into particle filter, localization could be recalled. As the table given below, eventhough both sensor fusion and localization goal is to predict the location of a moving vehicle, it should be clear to know the similarities and the difference between these concepts.
+
+| Localization            | Sensor Fusion                                                 |
+|------------------|-------------------------------------------------------------|
+| Things are in vehicle coordinates OR map coordinates. The entire objective of localization is to find the transformation between vehicle coordinates and map coordinates. In other words, we’re trying to find the position of the car in the map!            | Everything is in vehicle coordinates where the x axis points in the direction of the car’s heading and the y axis points to the left of the car.                                          |
+| The position of the car is described in map coordinates.      | The car is always assumed to be at the origin of the vehicle coordinate system.  |
+| The sensor measurements are usually described in vehicle coordinates. Vehicle coordinates have the x-axis in the direction of the car’s heading, the y-axis pointing orthogonal to the left of the car, and the z-axis pointing upwards.       | Sensor measurements are in vehicle coordinates. |
+| Map landmarks are in map coordinates.       | There’s no map involved!   |
+
+<p align="justify">
+Localization of an object within a given map can be effected by probabilistic filter methods. One such filter is a particle filter - uses a random sampling method to generate different system states & then assign high weights to those state that are supported by sensor data. It is oftenly used for non-linear system and very easy to implement.
+ </p>
+ 
+ ## Implementation of Particle Filter<a name="motivation"></a>
+ 
+ <p align="justify">
+ The main objective of a particle filter is to tracka  variable of interest as it evolves over time, typically with a non Gaussian and potentially multi-modal PDF. The basis of the method is to construct a sample-based representation fo fthe entire PDF. A series of actions are taken, each one modifying the state of the variable of interest accordifngn to some model. Moreover at certain times an observation arrives that constrains the state of the variable of interest at that time. Multiple copies (particles) of the variable of interest are used, each onen associated with a weight that signifies the quality of the specific particle. An estimate of the variable of interest is obtained by the weighted sum of all the particles. The particel filter algorithm is recursive in nature and operates in two phases. 1. Prediction 2. Update. After each action, each partilce is modfied according to the existing model (prediction stage), including the addition of random noise in order to simulate the effect of noise on the variable of interest. Then, each particles weight is re-evaluated based on the latest sensory informatioin available. At times the particles with samll weights are eliminated, a process called resampling. 
+ </p>
 
 
 
