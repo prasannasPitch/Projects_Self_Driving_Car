@@ -6,12 +6,11 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 
 ## Table Content: ##
 - [Motivation for Particle Filter](#motivation)
-- [Implentation of Particle Filter](#imp)
+- [General Workflow](#imp)
 - [Pseudo Code  Explaination](#psu)
-- [Preprocessing Step](#preprocess)
-- [Model Architecture](#model)
+- [Running the Code](#run)
+- [File Structure](#file)
 - [Result](#result)
-- [Files](#files)
 
 
 ## Motivation for Particle Filter <a name="motivation"></a>
@@ -28,7 +27,7 @@ Before diving into particle filter, we recall the concept of localization. As th
 Localization of an object within a given map can be effected by probabilistic filter methods. One such filter is a particle filter - uses a random sampling method to generate different system states & then assign high weights to those state that are supported by sensor data. It is oftenly used for non-linear system and very easy to implement.
  </p>
  
- ## Implementation of Particle Filter<a name="imp"></a>
+ ## General Workflow<a name="imp"></a>
  
  
 ![image](https://user-images.githubusercontent.com/37708330/52903657-f444c280-3220-11e9-812c-d40fd60c681a.png)
@@ -55,20 +54,7 @@ This is an outline of steps you will need to take with your code in order to imp
 5. The new set of particles represents the Bayes filter posterior probability. We now have a refined estimate of the vehicles position based on input evidence.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Running the Code
+## Running the Code <a name="run"></a>
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
 
 This repository includes two files that can be used to set up and install uWebSocketIO for either Linux or Mac systems. For windows you can use either Docker, VMware, or even Windows 10 Bash on Ubuntu to install uWebSocketIO.
@@ -147,7 +133,7 @@ Your job is to build out the methods in `particle_filter.cpp` until the simulato
 Success! Your particle filter passed!
 ```
 
-# Implementing the Particle Filter
+## File Structure  <a name="file"></a>
 The directory structure of this repository is as follows:
 
 ```
@@ -175,7 +161,7 @@ The only file you should modify is `particle_filter.cpp` in the `src` directory.
 
 If you are interested, take a look at `src/main.cpp` as well. This file contains the code that will actually be running your particle filter and calling the associated methods.
 
-## Inputs to the Particle Filter
+### Inputs to the Particle Filter
 You can find the inputs to the particle filter in the `data` directory.
 
 #### The Map*
@@ -188,15 +174,4 @@ You can find the inputs to the particle filter in the `data` directory.
 
 > * Map data provided by 3D Mapping Solutions GmbH.
 
-## Success Criteria
-If your particle filter passes the current grading code in the simulator (you can make sure you have the current version at any time by doing a `git pull`), then you should pass!
-
-The things the grading code is looking for are:
-
-
-1. **Accuracy**: your particle filter should localize vehicle position and yaw to within the values specified in the parameters `max_translation_error` and `max_yaw_error` in `src/main.cpp`.
-
-2. **Performance**: your particle filter should complete execution within the time of 100 seconds.
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+## Result<a name="result"></a>
