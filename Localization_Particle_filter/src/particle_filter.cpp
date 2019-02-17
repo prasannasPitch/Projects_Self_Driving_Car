@@ -18,6 +18,10 @@
 
 #include "helper_functions.h"
 
+using std::string;
+using std::vector;
+std::default_random_engine gen;
+
 //initialize particles with the data from GPS 
 void ParticleFilter::init(double x, double y, double theta, double std[]) {
   	
