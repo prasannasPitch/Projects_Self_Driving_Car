@@ -1,5 +1,6 @@
 # Localization of Kidnapped Vehicle Project
 Self-Driving Car Engineer Nanodegree Program
+
 <p align="justify">
 The goal of the project is to localize the movement of the kidnapped vehicle  with a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data. In this project, a 2 dimensional particle filter is implemented in C++. The particle filter is given a map and some initial localization information (analogous to what a GPS would provide). At each time step the filter, it will also get observation and control data.
 </p>
@@ -33,7 +34,7 @@ Localization of an object within a given map can be effected by probabilistic fi
 ![image](https://user-images.githubusercontent.com/37708330/52903657-f444c280-3220-11e9-812c-d40fd60c681a.png)
  
  <p align="justify">
- The main objective of a particle filter is to tracka  variable of interest as it evolves over time, typically with a non Gaussian and potentially multi-modal PDF. The basis of the method is to construct a sample-based representation fo fthe entire PDF. A series of actions are taken, each one modifying the state of the variable of interest accordifngn to some model. Moreover at certain times an observation arrives that constrains the state of the variable of interest at that time. Multiple copies (particles) of the variable of interest are used, each onen associated with a weight that signifies the quality of the specific particle. An estimate of the variable of interest is obtained by the weighted sum of all the particles. The particel filter algorithm is recursive in nature and operates in two phases. 1. Prediction 2. Update. After each action, each partilce is modfied according to the existing model (prediction stage), including the addition of random noise in order to simulate the effect of noise on the variable of interest. Then, each particles weight is re-evaluated based on the latest sensory informatioin available. At times the particles with samll weights are eliminated, a process called resampling. 
+ The main objective of a particle filter is to track a variable of interest as it evolves over time, typically with a non-Gaussian and potentially multi-modal PDF (Probability Distribution Function). The basis of the method is to construct a sample-based representation of the entire PDF. A series of actions are taken, each one modifying the state of the variable of interest according to some model. Moreover, at certain times an observation arrives that constrains the state of the variable of interest at that time. Multiple copies (particles) of the variable of interest are used, each one associated with a weight that signifies the quality of the specific particle. An estimate of the variable of interest is obtained by the weighted sum of all the particles. The particle filter algorithm is recursive in nature and operates in two phases. 1. Prediction 2. Update. After each action, each particle is modified according to the existing model (prediction stage), including the addition of random noise in order to simulate the effect of noise on the variable of interest. Then, each particles weight is re-evaluated based on the latest sensory information available. At times the particles with small weights are eliminated, a process called resampling. 
  </p>
 
 ## Pseudocode  Explanation<a name="psu"></a>
@@ -41,7 +42,7 @@ Localization of an object within a given map can be effected by probabilistic fi
 
 ![image](https://user-images.githubusercontent.com/37708330/52903692-95cc1400-3221-11e9-945c-2fd7250307eb.png)
  <p align="justify">
-This is an outline of steps you will need to take with your code in order to implement a particle filter for localizing an autonomous vehicle. The pseudo code steps correspond to the steps in the algorithm flow chart, initialization, prediction, particle weight updates, and resampling.
+This is an outline of steps you will need to take with your code in order to implement a particle filter for localizing an autonomous vehicle. The pseudo code steps correspond to the steps in the algorithm flow chart, initialization, prediction, particle weight updates, and resampling.  </p> 
  
  1. At the initialization step we estimate our position from GPS input. The subsequent steps in the process will refine this estimate to localize our vehicle.
 
@@ -127,12 +128,6 @@ OUTPUT: values provided by the c++ program to the simulator
 ["best_particle_sense_y"] <= list of sensed y positions
 
 
-Your job is to build out the methods in `particle_filter.cpp` until the simulator output says:
-
-```
-Success! Your particle filter passed!
-```
-
 ## File Structure  <a name="file"></a>
 The directory structure of this repository is as follows:
 
@@ -175,5 +170,12 @@ You can find the inputs to the particle filter in the `data` directory.
 > * Map data provided by 3D Mapping Solutions GmbH.
 
 ## Result<a name="result"></a>
+
+
+<p align="justify">
+Based on the comparison between the ground truth value and the predicted location of the particle filter, we could come to a conclusion if the particle filter gets passed. Below is a video of what it looks like when the simulator successfully is able to track the car to a particle. Notice that the green laser sensors from the car nearly overlap the blue laser sensors from the particle, this means that the particle transition calculations were done correctly.
+ </p>
+ 
+![ezgif com-video-to-gif 3](https://user-images.githubusercontent.com/37708330/52909920-0dd12300-3290-11e9-90ab-636567d88f77.gif)
 
 The final result for the project is uploaded in youtube : https://youtu.be/AYDJ7L6k4Bw
