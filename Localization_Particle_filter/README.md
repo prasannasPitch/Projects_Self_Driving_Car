@@ -2,7 +2,7 @@
 Self-Driving Car Engineer Nanodegree Program
 
 <p align="justify">
-The goal of the project is to localize the movement of the kidnapped vehicle  with a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data. In this project, a 2 dimensional particle filter is implemented in C++. The particle filter is given a map and some initial localization information (analogous to what a GPS would provide). At each time step the filter, it will also get observation and control data.
+The goal of the project is to localize the movement of the kidnapped vehicle  with a (noisy) GPS estimate of its initial location, and lots of (noisy) sensor and control data. In this project, a 2 dimensional particle filter is implemented in C++. The particle filter is given a map and some initial localization information (analogous to what a GPS would provide). At each time step the filter, it will also get observation and control data with which the corresponding location can be approximated.
 </p>
 
 ## Table Content: ##
@@ -12,7 +12,7 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 - [Running the Code](#run)
 - [File Structure](#file)
 - [Result](#result)
-- [Integrated Efficient C++ Features](#c++)
+- [Integrated Efficient C++ (11) Features](#c++)
 
 
 ## Motivation for Particle Filter <a name="motivation"></a>
@@ -209,4 +209,4 @@ One such situation where lambda functions are really helpful is discussed below.
 std::find_if(landmarks_MapCord.begin(), landmarks_MapCord.end(), [observation_Object](LandmarkObs const& landmarks_object){ return landmarks_object.id == observation_Object.id; });
 
 <p align="justify">
-In this code above, a lambda function is written inline to check the ids. Conventional way is to use a seperate function outside the main function and control has to shift from main to other function each time the calls are invoked. Also, my implementing a complex algorithm can involve in multiple smaller steps and in that situation, wrapping functionalities into smaller lambda functions makes the effect code refactoring and easy to maintain.
+In this code above, a lambda function is written inline to check the ids. Conventional way is to use a seperate function outside the main function and control has to shift from main to other function each time the calls are invoked. Also, by implementing a complex algorithm can involve in multiple smaller steps and in that situation, wrapping functionalities into smaller lambda functions makes the effect code refactoring and easy to maintain.
