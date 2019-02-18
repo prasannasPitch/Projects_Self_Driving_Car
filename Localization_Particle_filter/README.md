@@ -31,7 +31,6 @@ Localization of an object within a given map can be effected by probabilistic fi
  
  ## General Workflow<a name="imp"></a>
  
- 
 ![image](https://user-images.githubusercontent.com/37708330/52903657-f444c280-3220-11e9-812c-d40fd60c681a.png)
  
  <p align="justify">
@@ -172,7 +171,6 @@ You can find the inputs to the particle filter in the `data` directory.
 
 ## Result<a name="result"></a>
 
-
 <p align="justify">
 Based on the comparison between the ground truth value and the predicted location of the particle filter, we could come to a conclusion if the particle filter gets passed. Below is a video of what it looks like when the simulator successfully is able to track the car to a particle. Notice that the green laser sensors from the car nearly overlap the blue laser sensors from the particle, this means that the particle transition calculations were done correctly.
  </p>
@@ -180,7 +178,6 @@ Based on the comparison between the ground truth value and the predicted locatio
 ![ezgif com-video-to-gif 3](https://user-images.githubusercontent.com/37708330/52909920-0dd12300-3290-11e9-90ab-636567d88f77.gif)
 
 The final result for the project is uploaded in youtube : https://youtu.be/AYDJ7L6k4Bw
-
 
 ## Integrated Efficient C++ Features <a name="c++"></a>
 
@@ -200,4 +197,15 @@ observations_Object.x = needed variable (3 line code yet too many variables)| tw
 
 <p align="justify">
 But the major point here is, in the conventional for loop, we check i < observations.size(); . 'i' being int and 'observation.size()' has a return type of size_type. Thus some compilers may throw error or atleast give warning to compare an int with an size_type datatype. This can be completly avoided by using auto as it takes care of everything thats needed for iteration.  </p>
+
+
+### Usage of Lambda Functions :
+<p align="justify">
+C++11 introduces lambdas to write an inline, anonymous functor to replace the structure usage. For small simple examples this can be cleaner to read (it keeps everything in one place) and potentially simpler to maintain. Of course, intention is not to use lamda functions everytime, but simpler functions which needed to be present as same as the call - this can be handy.   </p>
+
+<p align="justify">
+One such situation where lambda functions are really helpful is discussed below. There are two vectors landmarks_object and observation_object. The goal here is to check whether the id of observation_Object is equal to landmarks_Object id. If present, then the function should return true else false. </p>
+
+std::find_if(landmarks_MapCord.begin(), landmarks_MapCord.end(), [observation_Object](LandmarkObs const& landmarks_object){ return landmarks_object.id == observation_Object.id; });
+
 
