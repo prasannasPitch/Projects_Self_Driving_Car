@@ -208,4 +208,5 @@ One such situation where lambda functions are really helpful is discussed below.
 
 std::find_if(landmarks_MapCord.begin(), landmarks_MapCord.end(), [observation_Object](LandmarkObs const& landmarks_object){ return landmarks_object.id == observation_Object.id; });
 
-
+<p align="justify">
+In this code above, a lambda function is written inline to check the ids. Conventional way is to use a seperate function outside the main function and control has to shift from main to other function each time the calls are invoked. Also, my implementing a complex algorithm can involve in multiple smaller steps and in that situation, wrapping functionalities into smaller lambda functions makes the effect code refactoring and easy to maintain.
