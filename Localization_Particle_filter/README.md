@@ -12,6 +12,7 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 - [Running the Code](#run)
 - [File Structure](#file)
 - [Result](#result)
+- [Integrated Efficient C++ Features](#c++)
 
 
 ## Motivation for Particle Filter <a name="motivation"></a>
@@ -179,3 +180,24 @@ Based on the comparison between the ground truth value and the predicted locatio
 ![ezgif com-video-to-gif 3](https://user-images.githubusercontent.com/37708330/52909920-0dd12300-3290-11e9-90ab-636567d88f77.gif)
 
 The final result for the project is uploaded in youtube : https://youtu.be/AYDJ7L6k4Bw
+
+
+## Integrated Efficient C++ Features <a name="c++"></a>
+
+### Usage of Auto Keyword :
+<p align="justify">
+ Before C++ 11, each data type needs to be explicitly declared at compile time, limiting the values of an expression at runtime but after C++ (11 or more), many keywords are included which allows a programmer to leave the type deduction to the compiler itself. it's a useful way of simplifying object declarations as well as cleaning up the syntax for certain situations.
+</p>
+
+In this case, instead of looping with a conventional "for loop" structure, auto could be replaced. 
+
+
+| Conventional for loop            | Using Auto                                                 |
+|------------------|-------------------------------------------------------------|
+| for(int i=0; i < observations.size(); ++i)| for (auto& observations_Object : observations) |
+LandmarkObs& observations_Object = observations.at(i); | observations_Object.x = needed variable |
+observations_Object.x = needed variable (3 line code yet too many variables)| two lines of code yet simple|
+
+<p align="justify">
+But the major point here is, in the conventional for loop, we check i < observations.size(); . 'i' being int and 'observation.size()' has a return type of size_type. Thus some compilers may throw error or atleast give warning to compare an int with an size_type datatype. This can be completly avoided by using auto as it takes care of everything thats needed for iteration.  </p>
+
