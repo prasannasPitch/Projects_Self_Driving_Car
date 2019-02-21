@@ -21,7 +21,7 @@ This respository is dedicated for the various projects given in Udacity's Self D
       </tr>
    <tr>
             <th><p align="center">
-           <a href="https://www.youtube.com/watch?v=FjCaN85yhng&feature=youtu.be"><img src="https://user-images.githubusercontent.com/37708330/50383991-443e5780-06be-11e9-81a6-1b396597b676.gif" alt="Video" width="45%" height="40%"></a>
+           <a href="https://youtu.be/cDPw8Onx3qk"><img src="https://user-images.githubusercontent.com/37708330/50383991-443e5780-06be-11e9-81a6-1b396597b676.gif" alt="Video" width="45%" height="40%"></a>
            <br>Autonomous Driving Simulation
            <br><a href="https://github.com/prasannasPitch/Projects_Self_Driving_Car/tree/master/Behavioral_Cloning" name="p4_code">(code)</a>
         </p>
