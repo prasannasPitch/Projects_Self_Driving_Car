@@ -136,7 +136,7 @@ The model was able to navigate in the track 1 without running outside of the roa
 
 ![2pmwrs](https://user-images.githubusercontent.com/37708330/50383991-443e5780-06be-11e9-81a6-1b396597b676.gif)
 
-Full Video : [Video_Link](https://youtu.be/FjCaN85yhng)
+Full Video : [Video Link](https://youtu.be/cDPw8Onx3qk)
 
 
 
