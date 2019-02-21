@@ -34,6 +34,16 @@ This respository is dedicated for the various projects given in Udacity's Self D
     </th>
   </tr>
   <tr>
+            <th><p align="center">
+           <a href="https://youtu.be/AYDJ7L6k4Bw"><img src="https://user-images.githubusercontent.com/37708330/52909920-0dd12300-3290-11e9-90ab-636567d88f77.gif" alt="Video" width="45%" height="40%"></a>
+           <br>Localization of a Moving Car          
+              (Particle Filter C++ Implementation)
+           <br><a href="https://github.com/prasannasPitch/Projects_Self_Driving_Car/tree/master/Localization_Particle_filter" name="p6_code">(code)</a>
+        </p>
+    </th>
+
+  </tr>
+  <tr>
   </tr>
   <tr>
   </tr>
