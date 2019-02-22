@@ -1,4 +1,4 @@
-# Behavioral Cloning Project
+# Behavioral Cloning Project - Autonomous Driving Simulation
 Self-Driving Car Engineer Nanodegree Program
 
 ## Table Content: ##
