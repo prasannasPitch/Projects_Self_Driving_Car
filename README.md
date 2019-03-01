@@ -41,9 +41,19 @@ This respository is dedicated for the various projects given in Udacity's Self D
            <br><a href="https://github.com/prasannasPitch/Projects_Self_Driving_Car/tree/master/Localization_Particle_filter" name="p6_code">(code)</a>
         </p>
     </th>
-
+    <th><p align="center">
+           <a href=""><img src="" alt="Video" width="45%" height="40%"></a>
+           <br>Highway Driving        
+           <br><a href="https://github.com/prasannasPitch/Projects_Self_Driving_Car/tree/master/Highway_Driving" name="p7_code">(code)</a>
+        </p>
+    </th>
+    
+    
+    
+    
   </tr>
   <tr>
+    
   </tr>
   <tr>
   </tr>
