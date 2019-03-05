@@ -10,8 +10,8 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 - [General Workflow](#imp)
 - [Pseudo Code  Explaination](#psu)
 - [Running the Code](#run)
-- [File Structure](#file)
 - [Result](#result)
+- [File Structure](#file)
 - [Integrated Efficient C++ (11) Features](#c++)
 
 
@@ -128,6 +128,29 @@ OUTPUT: values provided by the c++ program to the simulator
 ["best_particle_sense_y"] <= list of sensed y positions
 
 
+### Inputs to the Particle Filter
+You can find the inputs to the particle filter in the `data` directory.
+
+#### The Map*
+`map_data.txt` includes the position of landmarks (in meters) on an arbitrary Cartesian coordinate system. Each row has three columns
+1. x position
+2. y position
+3. landmark id
+
+### All other data the simulator provides, such as observations and controls.
+
+> * Map data provided by 3D Mapping Solutions GmbH.
+
+## Result<a name="result"></a>
+
+<p align="justify">
+Based on the comparison between the ground truth value and the predicted location of the particle filter, we could come to a conclusion if the particle filter gets passed. Below is a video of what it looks like when the simulator successfully is able to track the car to a particle. Notice that the green laser sensors from the car nearly overlap the blue laser sensors from the particle, this means that the particle transition calculations were done correctly.
+ </p>
+ 
+![ezgif com-video-to-gif 3](https://user-images.githubusercontent.com/37708330/52909920-0dd12300-3290-11e9-90ab-636567d88f77.gif)
+
+The final result for the project is uploaded in youtube : https://youtu.be/AYDJ7L6k4Bw
+
 ## File Structure  <a name="file"></a>
 The directory structure of this repository is as follows:
 
@@ -156,28 +179,6 @@ The only file you should modify is `particle_filter.cpp` in the `src` directory.
 
 If you are interested, take a look at `src/main.cpp` as well. This file contains the code that will actually be running your particle filter and calling the associated methods.
 
-### Inputs to the Particle Filter
-You can find the inputs to the particle filter in the `data` directory.
-
-#### The Map*
-`map_data.txt` includes the position of landmarks (in meters) on an arbitrary Cartesian coordinate system. Each row has three columns
-1. x position
-2. y position
-3. landmark id
-
-### All other data the simulator provides, such as observations and controls.
-
-> * Map data provided by 3D Mapping Solutions GmbH.
-
-## Result<a name="result"></a>
-
-<p align="justify">
-Based on the comparison between the ground truth value and the predicted location of the particle filter, we could come to a conclusion if the particle filter gets passed. Below is a video of what it looks like when the simulator successfully is able to track the car to a particle. Notice that the green laser sensors from the car nearly overlap the blue laser sensors from the particle, this means that the particle transition calculations were done correctly.
- </p>
- 
-![ezgif com-video-to-gif 3](https://user-images.githubusercontent.com/37708330/52909920-0dd12300-3290-11e9-90ab-636567d88f77.gif)
-
-The final result for the project is uploaded in youtube : https://youtu.be/AYDJ7L6k4Bw
 
 ## Integrated Efficient C++ Features <a name="c++"></a>
 
