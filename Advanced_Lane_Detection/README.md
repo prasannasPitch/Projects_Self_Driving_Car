@@ -10,6 +10,8 @@ The objective is to detect the lanes from the image/video and find the possible 
 * Determine the curvature of the lane and car position offset value with respect to center.
 * Highlight path of the car between the lanes.
 
+![bw](https://user-images.githubusercontent.com/37708330/53917991-200bd900-4066-11e9-81cd-692177d466dd.png)
+
 ### Camera Calibration
 
 Due to radial distortion, straight lines will appear curved. Its effect is more as we move away from the center of image. Similarly, another distortion is the tangential distortion which occurs because image taking lens is not aligned perfectly parallel to the imaging plane. So some areas in image may look nearer than expected.
