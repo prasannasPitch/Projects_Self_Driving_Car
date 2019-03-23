@@ -114,9 +114,6 @@ int main() {
           }
 
           bool too_close = false;
-
-          vector<int> left_detected_vehicle, right_detected_vehicle;
-
           //find ref_v to use
           for (int i = 0; i < sensor_fusion.size(); ++i)
           {
