@@ -114,175 +114,168 @@ int main() {
           }
 
           bool too_close = false;
-          
-					for (int i = 0; i < sensor_fusion.size(); ++i) {
-						// car is in my lane
-						float d = sensor_fusion[i][6];
-						if (d < 8 && d > 4 && lane == 1) {
-							double vx = sensor_fusion[i][3];
-							double vy = sensor_fusion[i][4];
-							double check_speed = sqrt(vx * vx + vy * vy);
-							double check_car_s = sensor_fusion[i][5];
+                              //detect collision in middle lane
+                    for(int i = 0; i < sensor_fusion.size(); ++i) {
+                        // car is in my lane
+                        float d = sensor_fusion[i][6];
+                        if(d < 8 && d > 4 && lane == 1) {           //my lane is 1 and d vlue in the map is 4-8
+                            double vx = sensor_fusion[i][3];
+                            double vy = sensor_fusion[i][4];
+                            double check_speed = sqrt(vx * vx + vy * vy);
+                            double check_car_s = sensor_fusion[i][5];
 
-							check_car_s += (static_cast<double>(prev_size) * .02 * check_speed); // if using previous points ca project s value out
-																								 // check s values greater than mine and s gap
-							if ((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
-								// Do some logic here, lower reference velocity so we dont crash into the car in front of us, could
-								// also flag to try to change lanes.
-								//ref_vel = 29.5; //mph
-								cout << "Too close condition in middle lane reached" << endl;
-								too_close = true;
-								break;
+                            check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
+                            if((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
+                                cout << "Too close condition in middle lane reached" << endl;
+                                too_close = true;
+                                break;
 
-							}
+                            }
 
-						}
-					}
-					for (int i = 0; i < sensor_fusion.size(); ++i) {
-						// car is in my lane
-						float d = sensor_fusion[i][6];
+                        }
+                    }
+                    //detect collision in right lane
+                    for(int i = 0; i < sensor_fusion.size(); ++i) {
+                        // car is in my lane
+                        float d = sensor_fusion[i][6];
 
-						if (d < 12 && d > 8 && lane == 2) {
-							double vx = sensor_fusion[i][3];
-							double vy = sensor_fusion[i][4];
-							double check_speed = sqrt(vx * vx + vy * vy);
-							double check_car_s = sensor_fusion[i][5];
+                        if(d < 12 && d > 8 && lane == 2) {          //my lane is 2 and d vlue in the map is 8-12
+                            double vx = sensor_fusion[i][3];
+                            double vy = sensor_fusion[i][4];
+                            double check_speed = sqrt(vx * vx + vy * vy);
+                            double check_car_s = sensor_fusion[i][5];
 
-							check_car_s += (static_cast<double>(prev_size) * .02 * check_speed); // if using previous points ca project s value out
-																								 // check s values greater than mine and s gap
-							if ((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
-								// Do some logic here, lower reference velocity so we dont crash into the car in front of us, could
-								// also flag to try to change lanes.
-								//ref_vel = 29.5; //mph
-								cout << "Too close condition in right lane reached" << endl;
-								too_close = true;
-								break;
+                            check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
+                            if((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
+                                cout << "Too close condition in right lane reached" << endl;
+                                too_close = true;
+                                break;
 
-							}
+                            }
 
-						}
-					}
-					for (int i = 0; i < sensor_fusion.size(); ++i) {
-						// car is in my lane
-						float d = sensor_fusion[i][6];
+                        }
+                    }
+                    //detect collision in left lane
+                    for(int i = 0; i < sensor_fusion.size(); ++i) {
+                        // car is in my lane
+                        float d = sensor_fusion[i][6];
 
-						if (d < 4 && d > 0 && lane == 0) {
-							double vx = sensor_fusion[i][3];
-							double vy = sensor_fusion[i][4];
-							double check_speed = sqrt(vx * vx + vy * vy);
-							double check_car_s = sensor_fusion[i][5];
+                        if(d < 4 && d > 0 && lane == 0) {           ////my lane is 0 and d vlue in the map is 0-4
+                            double vx = sensor_fusion[i][3];
+                            double vy = sensor_fusion[i][4];
+                            double check_speed = sqrt(vx * vx + vy * vy);
+                            double check_car_s = sensor_fusion[i][5];
 
-							check_car_s += (static_cast<double>(prev_size) * .02 * check_speed); // if using previous points ca project s value out
-																								 // check s values greater than mine and s gap
-							if ((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
-								// Do some logic here, lower reference velocity so we dont crash into the car in front of us, could
-								// also flag to try to change lanes.
-								//ref_vel = 29.5; //mph
-								cout << "Too close condition in left lane reached" << endl;
-								too_close = true;
-								break;
+                            check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
+                            if((check_car_s > car_s) && ((check_car_s - car_s) < 30)) {
+                                cout << "Too close condition in left lane reached" << endl;
+                                too_close = true;
+                                break;
 
-							}
+                            }
 
-						}
+                        }
 
-					}
-					bool leftChange = false;
-					for (int i = 0; (i < sensor_fusion.size()) && too_close == true; ++i) {
-						// car is in my lane
-						float d = sensor_fusion[i][6];
-						if (d < 4 && d > 0 && too_close == true) {
-							double vx = sensor_fusion[i][3];
-							double vy = sensor_fusion[i][4];
-							double check_speed = sqrt(vx * vx + vy * vy);
-							double check_car_s = sensor_fusion[i][5];
+                    }
+                    // Check if left lane is free
+                    bool leftChange = false;
+                    for(int i = 0; (i < sensor_fusion.size()) && too_close == true; ++i) {
+                        // car is in my lane
+                        float d = sensor_fusion[i][6];
+                        if(d < 4 && d > 0 && too_close == true) {
+                            double vx = sensor_fusion[i][3];
+                            double vy = sensor_fusion[i][4];
+                            double check_speed = sqrt(vx * vx + vy * vy);
+                            double check_car_s = sensor_fusion[i][5];
 
-							check_car_s += (static_cast<double>(prev_size) * .02 * check_speed); // if using previous points ca project s value out
-							if ((check_car_s - car_s) > 30) {
-								leftChange = true;
-								cout << "Left change possible" << endl;
-								break;
-							}
-						}
-					}
-					bool rightChange = false;
-					for (int i = 0; (i < sensor_fusion.size()) && too_close == true; ++i) {
-						// car is in my lane
-						float d = sensor_fusion[i][6];
+                            check_car_s += (static_cast<double>(prev_size) * .02 * check_speed); // if using previous points ca project s value out
+                            if((check_car_s - car_s) > 30) {
+                                leftChange = true;
+                                cout << "Left change possible" << endl;
+                                break;
+                            }
+                        }
+                    }
+                    // Check if right lane is free
+                    bool rightChange = false;
+                    for(int i = 0; (i < sensor_fusion.size()) && too_close == true; ++i) {
+                        // car is in my lane
+                        float d = sensor_fusion[i][6];
 
-						if (d < 12 && d > 8 && too_close == true) {
+                        if(d < 12 && d > 8 && too_close == true) {
 
-							double vx = sensor_fusion[i][3];
-							double vy = sensor_fusion[i][4];
-							double check_speed = sqrt(vx * vx + vy * vy);
-							double check_car_s = sensor_fusion[i][5];
+                            double vx = sensor_fusion[i][3];
+                            double vy = sensor_fusion[i][4];
+                            double check_speed = sqrt(vx * vx + vy * vy);
+                            double check_car_s = sensor_fusion[i][5];
 
-							check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
-							if ((check_car_s - car_s) > 30) {
-								rightChange = true;
-								cout << "Right change possible" << endl;
-								break;
-							}
-						}
-					}
-					bool middleChange = false;
-					for (int i = 0; (i < sensor_fusion.size()) && too_close == true; ++i) {
-						// car is in my lane
-						float d = sensor_fusion[i][6];
+                            check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
+                            if((check_car_s - car_s) > 30) {
+                                rightChange = true;
+                                cout << "Right change possible" << endl;
+                                break;
+                            }
+                        }
+                    }
+                    // Check if middle lane is free
+                    bool middleChange = false;
+                    for(int i = 0; (i < sensor_fusion.size()) && too_close == true; ++i) {
+                        // car is in my lane
+                        float d = sensor_fusion[i][6];
 
-						if (d < 8 && d > 4 && too_close == true) {
+                        if(d < 8 && d > 4 && too_close == true) {
 
-							double vx = sensor_fusion[i][3];
-							double vy = sensor_fusion[i][4];
-							double check_speed = sqrt(vx * vx + vy * vy);
-							double check_car_s = sensor_fusion[i][5];
+                            double vx = sensor_fusion[i][3];
+                            double vy = sensor_fusion[i][4];
+                            double check_speed = sqrt(vx * vx + vy * vy);
+                            double check_car_s = sensor_fusion[i][5];
 
-							check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
-							if ((check_car_s - car_s) > 30) {
-								middleChange = true;
-								cout << "middle change possible" << endl;
-								break;
-							}
-						}
-					}
-					cout << "Lane Change Status Left Free | " << leftChange << " Middle Free | " << middleChange << " Right Free" << rightChange << endl;
-					bool lanechanged = false;
-					if (too_close == true && lane == 0 && middleChange == true) {
-						cout << "Condition suitable for lance change left to 1" << endl;
-						lane = 1;
-						lanechanged = true;
-						//too_close = false;
-					}
+                            check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
+                            if((check_car_s - car_s) > 30) {
+                                middleChange = true;
+                                cout << "middle change possible" << endl;
+                                break;
+                            }
+                        }
+                    }
+                    cout << "Lane Change Status Left Free | " << leftChange << " Middle Free | " << middleChange << " Right Free  | " << rightChange << endl;
+                    bool lanechanged = false;
+                    if(too_close == true && lane == 0 && middleChange == true) {
+                        cout << "Condition suitable for lance change left to 1" << endl;
+                        lane = 1;
+                        lanechanged = true;
+                        //too_close = false;
+                    }
 
-					if (too_close == true && lane == 1 && leftChange == true && lanechanged != true) {
-						cout << "Condition suitable for lance change left to 0" << endl;
-						lane = 0;
-						lanechanged = true;
-						//too_close = false;
-					}
+                    if(too_close == true && lane == 1 && leftChange == true && lanechanged != true) {
+                        cout << "Condition suitable for lance change left to 0" << endl;
+                        lane = 0;
+                        lanechanged = true;
+                        //too_close = false;
+                    }
 
-					if (too_close == true && lane == 1 && rightChange == true && lanechanged != true) {
-						cout << "Condition suitable for lance change left to 0" << endl;
-						lane = 2;
-						lanechanged = true;
-						//too_close = false;
-					}
+                    if(too_close == true && lane == 1 && rightChange == true && lanechanged != true) {
+                        cout << "Condition suitable for lance change right to 2" << endl;
+                        lane = 2;
+                        lanechanged = true;
+                        //too_close = false;
+                    }
 
-					if (too_close == true && lane == 2 && middleChange == true && lanechanged != true) {
-						cout << "Condition suitable for lance change left to 2" << endl;
-						lane = 1;
-						lanechanged = true;
-						//too_close = false;
-					}
+                    if(too_close == true && lane == 2 && middleChange == true && lanechanged != true) {
+                        cout << "Condition suitable for lance change left to 2" << endl;
+                        lane = 1;
+                        lanechanged = true;
+                        //too_close = false;
+                    }
 
-					if (too_close) {
-						ref_vel -= .25;
-						cout << "Car speed reducing" << endl;
-					}
-					else if (ref_vel < 49.5) {
-						ref_vel += .25;
-						cout << "Car speed increasing" << endl;
-					}
+                    if(too_close) {
+                        ref_vel -= .25;
+                        cout << "Car speed reducing" << endl;
+                    }
+                    else if(ref_vel < 49.5) {
+                        ref_vel += .25;
+                        cout << "Car speed increasing" << endl;
+                    }
 
           // INTERPOLATION
           // Create a list of widely spaced (x,y) waypoints, evenly spaced at 30m
