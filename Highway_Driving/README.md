@@ -93,6 +93,9 @@ A really helpful resource for doing this project and creating smooth trajectorie
     ```
 Lecture Notes
 
+![software-architecture](https://user-images.githubusercontent.com/37708330/55198216-711a7300-51b5-11e9-91da-01b3994b6b17.png)
+
+
 
 
 Highway Map
