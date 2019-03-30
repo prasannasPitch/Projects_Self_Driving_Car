@@ -91,14 +91,15 @@ A really helpful resource for doing this project and creating smooth trajectorie
     cd uWebSockets
     git checkout e94b6e1
     ```
-Lecture Notes
+## Lecture Notes
 
 ![software-architecture](https://user-images.githubusercontent.com/37708330/55198216-711a7300-51b5-11e9-91da-01b3994b6b17.png)
 
+## Result<a name="result"></a>
 
+The final result for the project is uploaded in youtube : https://youtu.be/vnXjv3sCKpA
 
-
-Highway Map
+### Highway Map
 Inside data/highway_map.csv there is a list of waypoints that go all the way around the track. The track contains a total of 181 waypoints, with the last waypoint mapping back around to the first. The waypoints are in the middle of the double-yellow dividing line in the center of the highway.
 
 The track is 6945.554 meters around (about 4.32 miles). If the car averages near 50 MPH, then it should take a little more than 5 minutes for it to go all the way around the highway.
