@@ -42,7 +42,7 @@ This respository is dedicated for the various projects given in Udacity's Self D
         </p>
     </th>
     <th><p align="center">
-           <a href="https://www.youtube.com/watch?v=vnXjv3sCKpA"><img src="![ezgif com-video-to-gif (4)](https://user-images.githubusercontent.com/37708330/55281217-93d19680-5331-11e9-9859-420aae177cbb.gif)" alt="Video" width="45%" height="40%"></a>
+           <a href="https://www.youtube.com/watch?v=vnXjv3sCKpA"><img src="https://user-images.githubusercontent.com/37708330/55281217-93d19680-5331-11e9-9859-420aae177cbb.gif" alt="Video" width="30%" height="50%"></a>
            <br>Highway Driving        
            <br><a href="https://github.com/prasannasPitch/Projects_Self_Driving_Car/tree/master/Highway_Driving" name="p7_code">(code)</a>
         </p>
