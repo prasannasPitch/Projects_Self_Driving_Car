@@ -31,9 +31,12 @@ T- rajectory planning or trajectory generation is the real-time planning of a ve
 
 ### Prediction <a name="predict"></a>
 <p align="justify">
-Prediction is the first step of path planning. It involves, predicting the behavior of other vehicles, and estimating their location at a time step in the future. Because of the time limitations, predictions only performed by increasing the s values of other cars, and the d value of each other car assumed to be constant in each step. The provided vx and vy values were combined in a single v, and this v value used to calculate the s value in the future. Consider the below example in which the green car could end up in two possible trajectories (straight trajectory or righ turn trajectory). So, for accurate predictions, either one of this approach can be used. </p>
+Prediction is the first step of path planning. It involves, predicting the behavior of other vehicles, and estimating their location at a time step in the future. Because of the time limitations, predictions only performed by increasing the s values of other cars, and the d value of each other car assumed to be constant in each step. The provided vx and vy values were combined in a single v, and this v value used to calculate the s value in the future. Consider the below example in which the green car could end up in two possible trajectories (straight trajectory or righ turn trajectory). So, for accurate predictions, either one of this approach can be used. 
+</p>
+
 - Model Based
 - Machine Learning Aproach
+
 ![image](https://user-images.githubusercontent.com/37708330/55282517-5c6ce500-5345-11e9-962e-5647366a6b04.png)
 
 
