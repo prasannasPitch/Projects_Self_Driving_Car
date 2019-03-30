@@ -1,8 +1,21 @@
 # CarND-Path-Planning-Project
 Self-Driving Car Engineer Nanodegree Program
 
-### Goals
+## Table Content: ##
+- [Goal of the Project](#goal)
+- [Introduction - Path Planning](#path)
+- [Prediction](#predict)
+- [Trajectory Generation](#trajectory)
+- [Finite State Machine](#fsm)
+- [Result](#result)
+- [File Structure](#file)
+- [Integrated Efficient C++ (11) Features](#c++)
+
+
+### Goal <a name="goal"></a>
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+
+## Introduction <a name="path"></a>
 
 Path planning and decision making for autonomous vehicles in urban environments enable self-driving cars to find the safest, most convenient, and most economically beneficial routes from point A to point B. Finding routes is complicated by all of the static and maneuverable obstacles that a vehicle must identify and bypass. Today, the major path planning approaches include the predictive control model, feasible model, and behavior-based model. Let’s first get familiar with some terms to understand how these approaches work.
 
@@ -18,17 +31,17 @@ Path planning and decision making for autonomous vehicles in urban environments 
 T- rajectory planning or trajectory generation is the real-time planning of a vehicle’s move from one feasible state to the next, satisfying the car’s kinematic limits based on its dynamics and as constrained by the navigation mode.
 
 
-### Prediction
+### Prediction <a name="predict"></a>
 Prediction is the first step of path planning. It involves, predicting the behavior of other vehicles, and estimating their location at a time step in the future. Because of the time limitations, predictions only performed by increasing the s values of other cars, and the d value of each other car assumed to be constant in each step. The provided vx and vy values were combined in a single v, and this v value used to calculate the s value in the future.
 
-### Trajectory Generation
+### Trajectory Generation <a name="trajectory"></a>
 Trajectory Generation is the second step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane.
 
 ![image](https://user-images.githubusercontent.com/37708330/53702249-29e2d180-3e05-11e9-82ea-c99735b90cbe.png)
 
 
 
-### Finite State Machines
+### Finite State Machines  <a name="fsm"></a>
 
 ![image](https://user-images.githubusercontent.com/37708330/53702329-0bc9a100-3e06-11e9-80c7-f48eb9fa8072.png)
 
