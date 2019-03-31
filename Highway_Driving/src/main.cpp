@@ -124,7 +124,7 @@ int main() {
 						double check_car_s = sensor_fusion[i][5];
 						check_car_s += (static_cast<double>(prev_size) * .02 * check_speed);
 
-						// this is just for safety! In case the car is way ahead of us we don't get stuck in the matched speed
+						// condition to make the car normal if its speed is more than expected
 						if (check_car_s - car_s > ref_vel && d < 2 + 4 * lane + 2 && d > 2 + 4 * lane - 2)
 						{
 							maintainSpeed = false;
