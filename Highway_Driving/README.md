@@ -8,7 +8,7 @@ Self-Driving Car Engineer Nanodegree Program
 - [Behavior Planning](#behav_planning)
 - [Trajectory Generation](#trajectory)
 - [Result](#result)
-- [File Structure](#file)
+- [Project Structure](#struct)
 
  <a name="goal"></a>
 ### Goal
@@ -60,33 +60,26 @@ States of the FSM can differ from the environment that the car is driving on. St
 
 One way to implement a transition between the states is by generating rough trajectories for each accessible "next state" and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is and then select the state with the lowest cost trajectory. Factors that are considered while designing cost functions are given below.
 
-
-
 ![image](https://user-images.githubusercontent.com/37708330/55288390-4435ae00-53b7-11e9-9764-d40a79a0f4c8.png)
 
 
 
 <a name="trajectory"></a>
 ### Trajectory Generation 
-Trajectory Generation is the final step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane.
+<p align="justify">
+Trajectory Generation is the final step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane. In our project of path planning for highway driving, we use polynomial trajectory generation method. 
+</p>
+Polynomial trajectory generation takes the current vehicle state (i) and goal state(f). As output, it gives six trajectory paramters both in s, d (longitudinal and lateral in frenet cordinates).
 
+![image](https://user-images.githubusercontent.com/37708330/55288558-92e44780-53b9-11e9-85bd-7263dd7cf633.png)
 
+<p align="justify">
+The below shown situation is a perfect example for how polynomial trajectory generation helps in passing a vehicle. As the current state and goal state is known before, the a polynomial equation can be fitted in this trajectory (including factors like jerk minimisation, constant accceleration and collision avoidance). By following the polynomial, the autonomous vehicle could smoothly pass the preceding car.
+ </p>
 
-   
-### Simulator.
-You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).  
+![image](https://user-images.githubusercontent.com/37708330/55288648-df7c5280-53ba-11e9-87d1-0bde0e7fcb97.png)
 
-To run the simulator on Mac/Linux, first make the binary file executable with the following command:
-```shell
-sudo chmod u+x {simulator_file_name}
-```
-
-#### The map of the highway is in data/highway_map.txt
-Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
-
-The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
-
-## Basic Build Instructions
+## Build Instructions
 
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
@@ -160,13 +153,21 @@ A really helpful resource for doing this project and creating smooth trajectorie
     cd uWebSockets
     git checkout e94b6e1
     ```
-## Lecture Notes
+    
+<a name="struct"></a>
+## Project Structure<a name="struct"></a>
 
 ![software-architecture](https://user-images.githubusercontent.com/37708330/55198216-711a7300-51b5-11e9-91da-01b3994b6b17.png)
 
-## Result<a name="result"></a>
+<a name="result"></a>
+## Result
 
 The final result for the project is uploaded in youtube : https://youtu.be/vnXjv3sCKpA
+
+## The map of the highway is in data/highway_map.txt
+Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
+
+The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
 
 ### Highway Map
 Inside data/highway_map.csv there is a list of waypoints that go all the way around the track. The track contains a total of 181 waypoints, with the last waypoint mapping back around to the first. The waypoints are in the middle of the double-yellow dividing line in the center of the highway.
@@ -183,11 +184,3 @@ The s value is the distance along the direction of the road. The first waypoint 
 The d vector has a magnitude of 1 and points perpendicular to the road in the direction of the right-hand side of the road. The d vector can be used to calculate lane positions. For example, if you want to be in the left lane at some waypoint just add the waypoint's (x,y) coordinates with the d vector multiplied by 2. Since the lane is 4 m wide, the middle of the left lane (the lane closest to the double-yellow dividing line) is 2 m from the waypoint.
 
 If you would like to be in the middle lane, add the waypoint's coordinates to the d vector multiplied by 6 = (2+4), since the center of the middle lane is 4 m from the center of the left lane, which is itself 2 m from the double-yellow dividing line and the waypoints.
-
-Converting Frenet Coordinates
-We have included a helper function, getXY, which takes in Frenet (s,d) coordinates and transforms them to (x,y) coordinates.
-
-Interpolating Points
-If you need to estimate the location of points between the known waypoints, you will need to "interpolate" the position of those points.
-
-In previous lessons we looked at fitting polynomials to waypoints. Once you have a polyn
