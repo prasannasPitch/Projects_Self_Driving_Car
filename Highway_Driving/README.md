@@ -7,8 +7,10 @@ Self-Driving Car Engineer Nanodegree Program
 - [Prediction](#predict)
 - [Behavior Planning](#behav_planning)
 - [Trajectory Generation](#trajectory)
-- [Result](#result)
+- [Build Instruction](#build)
 - [Project Structure](#struct)
+- [Result](#result)
+- [Other Files](#files)
 
  <a name="goal"></a>
 ### Goal
@@ -79,6 +81,7 @@ The below shown situation is a perfect example for how polynomial trajectory gen
 
 ![image](https://user-images.githubusercontent.com/37708330/55288648-df7c5280-53ba-11e9-87d1-0bde0e7fcb97.png)
 
+<a name="build"></a>
 ## Build Instructions
 
 1. Clone this repo.
@@ -164,7 +167,10 @@ A really helpful resource for doing this project and creating smooth trajectorie
 
 The final result for the project is uploaded in youtube : https://youtu.be/vnXjv3sCKpA
 
-## The map of the highway is in data/highway_map.txt
+
+<a name="files"></a>
+## Other Files
+### The map of the highway is in data/highway_map.txt
 Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
 
 The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
