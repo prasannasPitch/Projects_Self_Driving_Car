@@ -5,8 +5,8 @@ Self-Driving Car Engineer Nanodegree Program
 - [Goal of the Project](#goal)
 - [Introduction - Path Planning](#path)
 - [Prediction](#predict)
+- [Behavior Planning](#behav_planning)
 - [Trajectory Generation](#trajectory)
-- [Finite State Machine](#fsm)
 - [Result](#result)
 - [File Structure](#file)
 - [Integrated Efficient C++ (11) Features](#c++)
@@ -28,8 +28,8 @@ Path planning and decision making for autonomous vehicles in urban environments 
 - A trajectory is a sequence of states visited by the vehicle, parameterized by time and, most probably, velocity.
 T- rajectory planning or trajectory generation is the real-time planning of a vehicle’s move from one feasible state to the next, satisfying the car’s kinematic limits based on its dynamics and as constrained by the navigation mode.
 
-
-### Prediction <a name="predict"></a>
+ <a name="predict"></a>
+### Prediction
 <p align="justify">
 Prediction is the first step of path planning. It involves, predicting the behavior of other vehicles, and estimating their location at a time step in the future. Because of the time limitations, predictions only performed by increasing the s values of other cars, and the d value of each other car assumed to be constant in each step. The provided vx and vy values were combined in a single v, and this v value used to calculate the s value in the future. Consider the below example in which the green car could end up in two possible trajectories (straight trajectory or righ turn trajectory). So, for accurate predictions, either one of this approach can be used. 
 </p>
@@ -39,17 +39,23 @@ Prediction is the first step of path planning. It involves, predicting the behav
 
 ![image](https://user-images.githubusercontent.com/37708330/55282517-5c6ce500-5345-11e9-962e-5647366a6b04.png)
 
-
-### Trajectory Generation <a name="trajectory"></a>
-Trajectory Generation is the second step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane.
+ <a name="behav_planning"></a>
+### Behavior Planning
+<p align="justify">
+ This step is responsible for providing guidance for trajectory planner about what sort of maneuvers they should plan the trajectories. Based on the predictions, route and map the behavior planner gives the possible maneuvers that could be possible at the given circumstances. Factors like feasibility, safety, optimality, legality are incorprated in this step. 
+</p>
 
 ![image](https://user-images.githubusercontent.com/37708330/53702249-29e2d180-3e05-11e9-82ea-c99735b90cbe.png)
 
-
-
-### Finite State Machines  <a name="fsm"></a>
+#### Finite State Machines
+In the real time scenario there are could be a lot of maneuvers or states that can be possible for navigating from one place to another. For example, in a high way driving scenario there could be states like lane changing state, follow proceeding car state, maintain speed limit state and so on. So we require something like a finite state machine model to plan the behavior of the autonomous vehicle.
 
 ![image](https://user-images.githubusercontent.com/37708330/53702329-0bc9a100-3e06-11e9-80c7-f48eb9fa8072.png)
+
+<a name="trajectory"></a>
+### Trajectory Generation 
+Trajectory Generation is the second step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane.
+
 
 
    
