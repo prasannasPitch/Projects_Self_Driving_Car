@@ -9,13 +9,13 @@ Self-Driving Car Engineer Nanodegree Program
 - [Trajectory Generation](#trajectory)
 - [Result](#result)
 - [File Structure](#file)
-- [Integrated Efficient C++ (11) Features](#c++)
 
-
-### Goal <a name="goal"></a>
+ <a name="goal"></a>
+### Goal
 In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
 
-## Introduction <a name="path"></a>
+<a name="path"></a>
+## Introduction 
 <p align="justify">
 Path planning and decision making for autonomous vehicles in urban environments enable self-driving cars to find the safest, most convenient, and most economically beneficial routes from point A to point B. Finding routes is complicated by all of the static and maneuverable obstacles that a vehicle must identify and bypass. Today, the major path planning approaches include the predictive control model, feasible model, and behavior-based model. Let’s first get familiar with some terms to understand how these approaches work.
 
@@ -48,13 +48,27 @@ Prediction is the first step of path planning. It involves, predicting the behav
 ![image](https://user-images.githubusercontent.com/37708330/53702249-29e2d180-3e05-11e9-82ea-c99735b90cbe.png)
 
 #### Finite State Machines
+<p align="justify">
 In the real time scenario there are could be a lot of maneuvers or states that can be possible for navigating from one place to another. For example, in a high way driving scenario there could be states like lane changing state, follow proceeding car state, maintain speed limit state and so on. So we require something like a finite state machine model to plan the behavior of the autonomous vehicle.
+</p>
 
 ![image](https://user-images.githubusercontent.com/37708330/53702329-0bc9a100-3e06-11e9-80c7-f48eb9fa8072.png)
 
+States of the FSM can differ from the environment that the car is driving on. States in a parking lot may differ from the states in the highways. Below are some of the states which is possible in a situation like highway driving.
+
+![image](https://user-images.githubusercontent.com/37708330/55288271-62021380-53b5-11e9-9ddd-341a0aadd467.png)
+
+One way to implement a transition between the states is by generating rough trajectories for each accessible "next state" and then finding the best. To "find the best" we generally use cost functions. We can then figure out how costly each rough trajectory is and then select the state with the lowest cost trajectory. Factors that are considered while designing cost functions are given below.
+
+
+
+![image](https://user-images.githubusercontent.com/37708330/55288390-4435ae00-53b7-11e9-9764-d40a79a0f4c8.png)
+
+
+
 <a name="trajectory"></a>
 ### Trajectory Generation 
-Trajectory Generation is the second step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane.
+Trajectory Generation is the final step and probably the most challenging step of path planning. During generation step, maximum acceleration and maximum velocity values were set in advance. The interactions with the other cars were calculated, such as closest approach, and lowest time to collide. In addition, other penalties added for not driving at the target speed, changing lanes, driving at side lanes, canceling the previous action, driving in an occupied lane.
 
 
 
