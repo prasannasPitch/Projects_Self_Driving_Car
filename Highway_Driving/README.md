@@ -14,12 +14,13 @@ Self-Driving Car Engineer Nanodegree Program
 
  <a name="goal"></a>
 ### Goal
-In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+<p align="justify">
+In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3. </p>
 
 <a name="path"></a>
 ## Introduction 
 <p align="justify">
-Path planning and decision making for autonomous vehicles in urban environments enable self-driving cars to find the safest, most convenient, and most economically beneficial routes from point A to point B. Finding routes is complicated by all of the static and maneuverable obstacles that a vehicle must identify and bypass. Today, the major path planning approaches include the predictive control model, feasible model, and behavior-based model. Let’s first get familiar with some terms to understand how these approaches work.
+Path planning and decision making for autonomous vehicles in urban environments enable self-driving cars to find the safest, most convenient, and most economically beneficial routes from point A to point B. Finding routes is complicated by all of the static and maneuverable obstacles that a vehicle must identify and bypass. Today, the major path planning approaches include the predictive control model, feasible model, and behavior-based model. Let’s first get familiar with some terms to understand how these approaches work. </p>
 
 ![image](https://user-images.githubusercontent.com/37708330/53702229-f6a04280-3e04-11e9-95c6-26888f5b78ff.png)
 
@@ -51,7 +52,7 @@ Prediction is the first step of path planning. It involves, predicting the behav
 
 #### Finite State Machines
 <p align="justify">
-In the real time scenario there are could be a lot of maneuvers or states that can be possible for navigating from one place to another. For example, in a high way driving scenario there could be states like lane changing state, follow proceeding car state, maintain speed limit state and so on. So we require something like a finite state machine model to plan the behavior of the autonomous vehicle.
+In the real time scenario there are could be a lot of maneuvers or states that can be possible for navigating from one place to another. For example, in a high way driving scenario there could be states like lane changing, follow proceeding car, maintain speed limit  and so on. So we require something like a finite state machine model to plan the behavior of the autonomous vehicle.
 </p>
 
 ![image](https://user-images.githubusercontent.com/37708330/53702329-0bc9a100-3e06-11e9-80c7-f48eb9fa8072.png)
@@ -76,7 +77,7 @@ Polynomial trajectory generation takes the current vehicle state (i) and goal st
 ![image](https://user-images.githubusercontent.com/37708330/55288558-92e44780-53b9-11e9-85bd-7263dd7cf633.png)
 
 <p align="justify">
-The below shown situation is a perfect example for how polynomial trajectory generation helps in passing a vehicle. As the current state and goal state is known before, the a polynomial equation can be fitted in this trajectory (including factors like jerk minimisation, constant accceleration and collision avoidance). By following the polynomial, the autonomous vehicle could smoothly pass the preceding car.
+The below shown situation is a perfect example for how polynomial trajectory generation helps in passing a vehicle. As the current state and goal state is known before, the a polynomial equation can be fitted in this trajectory (considering factors like jerk minimisation, constant accceleration and collision avoidance). By following the polynomial, the autonomous vehicle could smoothly pass the preceding car.
  </p>
 
 ![image](https://user-images.githubusercontent.com/37708330/55288648-df7c5280-53ba-11e9-87d1-0bde0e7fcb97.png)
