@@ -10,8 +10,8 @@ Self-Driving Car Engineer Nanodegree Program
 - [Result](#result)
 - [Setting up the project](#setup)
 
-
-## Motiavation for Lidar & Radar Sensors: <a name="motivation"></a>
+<a name="motivation"></a>
+## Motiavation for Lidar & Radar Sensors: 
 
 <p align="justify">
 As we approach towards level autonomous 4-5, the number of sensors in a car increases as the parallel processing shows efficient competence , but which types of sensor will be the most effective for perception and localization? </p>
@@ -29,8 +29,8 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 
 ![classification](https://user-images.githubusercontent.com/37708330/50005132-8a523780-ffa9-11e8-8229-aaf60b765043.png)
 
-
-## Sensor Fusion by Kalman Filter:<a name="fusion"></a>
+<a name="fusion"></a>
+## Sensor Fusion by Kalman Filter:
 
 <p align="justify"> As we could see, both Lidar and Radar has its own strengths and limitations. As mentioned above, Lidar can map the surrounding and Radar can detect motion of other objects in surroundings. Combining measurements from both these sensors can result in accurate tracking of objects around a moving vehicle. Therefore sensor fusion technique should be implemented to use the advantages of both the sensors. One way of implementing sensor fusion is by implementing a Kalman Filter. In this project, we use kalman filter to track a moving car from a source vehicle. </p>
 
@@ -67,7 +67,8 @@ Till now we have discussed about why kalman filters are used for tracking proble
 
 ![radar_meas](https://user-images.githubusercontent.com/37708330/50017876-c13a4480-ffcd-11e8-8230-86e570b94b33.PNG)
 
-## Design of Kalman Filter & Extended Kalman Filter : <a name="design"></a>
+<a name="design"></a>
+## Design of Kalman Filter & Extended Kalman Filter : 
 
 The Kalman Filter algorithm will go through the following steps:
 
@@ -88,7 +89,8 @@ Above Image : Follow the arrows from top left to bottom to top right: (1) A Gaus
 ![kalman_aft](https://user-images.githubusercontent.com/37708330/50035367-07a99680-0002-11e9-9471-8a71853e7afb.png)
 Above Image : After linear approximation, the resultant distribution is gaussian.
 
-## Code Flow : <a name="code"></a>
+<a name="code"></a>
+## Code Flow : 
 
 
 * main.cpp - reads in data, runs the Kalman filter and calculates RMSE values after each measurement.
@@ -98,7 +100,8 @@ Above Image : After linear approximation, the resultant distribution is gaussian
 
 ![codeflow](https://user-images.githubusercontent.com/37708330/50035724-1729df00-0004-11e9-8f31-8fe55938f840.png)
 
-## Result :<a name="result"></a>
+<a name="result"></a>
+## Result :
 
 The success metrics for this project are the RMSE values for 2 datasets.
 
@@ -180,8 +183,8 @@ Here are the results:
 
 ![laser dataset2](https://user-images.githubusercontent.com/37708330/50043513-c0f58400-0075-11e9-8d5d-f389b68088f8.PNG)
 
-
-## Setting up the project :<a name="setup"></a>
+<a name="setup"></a>
+## Setting up the project :
 In this project you will utilize a kalman filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower than the tolerance outlined in the project rubric. 
 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
