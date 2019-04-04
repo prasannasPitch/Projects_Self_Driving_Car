@@ -31,6 +31,9 @@ Localization of an object within a given map can be effected by probabilistic fi
  
  ## Markov Localization or Bayesian Localization :
  
+ ![image](https://user-images.githubusercontent.com/37708330/55588861-2e194c00-572f-11e9-8957-b7ed1d335fee.png)
+
+ 
  ```
  //Motion Model
  // step through each pseudo position x (i)
