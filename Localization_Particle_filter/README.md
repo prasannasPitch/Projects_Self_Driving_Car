@@ -29,6 +29,34 @@ Before diving into particle filter, we recall the concept of localization. As th
 Localization of an object within a given map can be effected by probabilistic filter methods. One such filter is a particle filter - uses a random sampling method to generate different system states & then assign high weights to those state that are supported by sensor data. It is oftenly used for non-linear system and very easy to implement.
  </p>
  
+ ## Markov Localization or Bayesian Localization :
+ 
+ ```
+ //Motion Model
+ // step through each pseudo position x (i)
+    for (unsigned int i = 0; i < map_size; ++i) {
+      float pseudo_position = float(i);
+    // get the motion model probability for each x position
+    float motion_prob = motion_model(pseudo_position, movement_per_timestep,
+                                     priors, map_size, control_stdev);
+        
+        
+    // print to stdou
+
+ vector<float> pseudo_ranges = pseudo_range_estimator(landmark_positions, 
+                                                         pseudo_position);
+
+//Observation Model
+//get observation probability
+    float observation_prob = observation_model(landmark_positions, observations, 
+                                               pseudo_ranges, distance_max, 
+                                               observation_stdev);
+
+
+posteriors[i] = motion_prob * observation_prob;
+
+```
+ 
  ## General Workflow<a name="imp"></a>
  
 ![image](https://user-images.githubusercontent.com/37708330/52903657-f444c280-3220-11e9-812c-d40fd60c681a.png)
