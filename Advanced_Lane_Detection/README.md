@@ -1,6 +1,25 @@
 ## Advanced Lane Finding
 Udacity - Self-Driving Car NanoDegree
 
+## Table Content: ##
+- [Motivation Lane Detection](#motivation)
+- [General Workflow](#imp)
+- [Pseudo Code  Explaination](#psu)
+- [Result](#result)
+- [File Structure](#file)
+- [](#c++)
+
+![bw](https://user-images.githubusercontent.com/37708330/53917991-200bd900-4066-11e9-81cd-692177d466dd.png)
+
+ <a name="motivation"></a>
+### Motivation Lane Detection
+
+<p align="justify">
+The lines drawn on roads indicate to human drivers where the lanes are and act as a guiding reference to which direction to steer the vehicle accordingly and convention to how vehicle agents interact harmoniously on the road. Similarly for a self driving car, the ability to detect the lanes and navigate through  streets/highways is essential. Dedicated lane detection involving segmentation algorithms proved good for these kind of approaches. I have implememented one possible solution for lane detection and complex semantic segmentation methods can be built on this.  </p>
+
+ <a name="imp"></a>
+### General Workflow
+
 The objective is to detect the lanes from the image/video and find the possible path for the car to move between the lanes. The steps followed to achieve this are :
 
 * Perform camera calibration - Find Camera matrix and the distortion coefficient through checkerboard images.
@@ -10,15 +29,14 @@ The objective is to detect the lanes from the image/video and find the possible 
 * Determine the curvature of the lane and car position offset value with respect to center.
 * Highlight path of the car between the lanes.
 
-![bw](https://user-images.githubusercontent.com/37708330/53917991-200bd900-4066-11e9-81cd-692177d466dd.png)
-
 ### Camera Calibration
-
+<p align="justify">
 Due to radial distortion, straight lines will appear curved. Its effect is more as we move away from the center of image. Similarly, another distortion is the tangential distortion which occurs because image taking lens is not aligned perfectly parallel to the imaging plane. So some areas in image may look nearer than expected.
 
 For stereo applications, these distortions need to be corrected first. To find all these parameters, what we have to do is to provide some sample images of a well defined pattern (eg, chess board). We find some specific points in it ( square corners in chess board). We know its coordinates in real world space and we know its coordinates in image. 
 
 Images are taken from a static camera and chess boards are placed at different locations and orientations. So we need to know (X,Y,Z) values. With the knowledge of point location in 3D, the corresponding 2D points can be taken and used for finding the camera parameters. 
+ </p>
 
  `cv2.calibrateCamera(objpoints, imgpoints, image-shape[::-1],None,None)` is the OpenCV funtion to find camera parameters. 3D points are called object points and 2D image points are called image points.
  
