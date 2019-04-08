@@ -47,9 +47,22 @@ Some of the color space are :
 
 The goal of this step is to transform the undistorted image to a "birds eye view" of the road which focuses only on the lane lines and displays them in such a way that they appear to be relatively parallel to eachother (as opposed to the converging lines you would normally see). To achieve the perspective transformation I first applied the OpenCV functions `getPerspectiveTransform` and `warpPerspective` which take a matrix of four source points on the undistorted image and remaps them to four destination points on the warped image. The source and destination points were selected manually by visualizing the locations of the lane lines on a series of test images.
 
-Now we have to find a position of left or right line at the bottom of binary warped image via detection of peaks in computed histogram for bottom part of binarized image (the bottom half of binarized image). The calculated histogram is smoothed by gaussian filter and then is used for peak detection with some thresholding: one for noise filtering and other for filtering an expected distance between detected peak and expected position of line at the bottom of image. As a result, the function returns the x value of detected peak, which is used as starting point for lane detection along vertical Y direction.
 
-`find_lane_pixels` function is to find the pixels which contributes to the lane pixels. With that information, wefit a second order polynomial to each lane line using `np.polyfit`.
+
+### Find lane pixels
+
+Now we have to find a position of left or right line at the bottom of binary warped image via detection of peaks in computed histogram for bottom part of binarized image (the bottom half of binarized image). The calculated histogram is smoothed by gaussian filter and then is used for peak detection with some thresholding: one for noise filtering and other for filtering an expected distance between detected peak and expected position of line at the bottom of image. As a result, the function returns the x value of detected peak, which is used as starting point for lane detection along vertical Y direction. In order to detect the lane pixels from the warped image, the following steps are performed.
+
+1. A histogram of the lower half of the warped image is created. 
+
+![image](https://user-images.githubusercontent.com/37708330/55748238-688c2d00-5a3e-11e9-9fdf-b91124c03f12.png)
+
+
+`find_lane_pixels` function is to find the pixels which contributes to the lane pixels. `np.polyfit` method is used to fit a polynomial for the detected lane pixels. 
+
+2. By finding the peak of the histogram, we find the starting point for searching our lane pixels.
+3. By Sliding Window technique, we identify the most likely coordinates of the lane lines in a window, which slides vertically through the image for both the left and right line.
+4. The coordinates previously calculated, a second order polynomial is calculated for both the left and right lane line. Numpy's function np.polyfit will be used to calculate the polynomials.
 
 ![curve_identified](https://user-images.githubusercontent.com/37708330/46499622-e0279800-c820-11e8-9762-42bf332e5bfd.png)
 
@@ -63,13 +76,12 @@ With the detected polynomial function, we calculate the range of the lane pixels
 
 ![lane area detected](https://user-images.githubusercontent.com/37708330/46499619-df8f0180-c820-11e8-9c78-a963ce45e709.png)
 
-### Discussion
 
-This project works well with the test image and the video given. But it is not robost enough to work with the challenge video. There are two reasons for this:
+### Another Sliding Window Search Approach
 
-* This algorithm heavily depends on the image processing methods (thresholding) for lane identification. Values are tuned for the test image and videos. In the challenge video, there are certain conditions which this thresholding does not hold good. So a globalised parameters could be estimated and used in code.
+Another way to approach the sliding window method is to apply a convolution, which will maximize the number of "hot" pixels in each window. A convolution is the summation of the product of two separate signals, in our case the window template and the vertical slice of the pixel image.
 
-* In the challenge video, the lane curvature is very steep and the prespective transform finds it difficult to output a plaussible value. This can be handled by interpolating the curve for certain length. Based on that, further values could be predicted for the regions which the lane lines are vague.
+We slide our window template across the image from left to right and any overlapping values are summed together, creating the convolved signal. The peak of the convolved signal is where there was the highest overlap of pixels and the most likely position for the lane marker.
 
 #### Update :
 
