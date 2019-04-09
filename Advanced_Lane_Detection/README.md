@@ -115,7 +115,7 @@ We slide our window template across the image from left to right and any overlap
 
 #### Update :
 
-* By further tuning the threshold and taking into consideration of intercept values, the challenge video is almost solved. Files can be seen in the "Challenge folder".
+* By further tuning the threshold and taking into consideration of intercept values, the challenge video is almost solved. Pipeline_ChallengeVideo.ipynb is the new file for solving challenge video.
 
   <a name="result"></a>
  ### Result
