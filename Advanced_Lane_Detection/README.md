@@ -1,7 +1,7 @@
 ## Advanced Lane Finding
 Udacity - Self-Driving Car NanoDegree
 
-![bw](https://user-images.githubusercontent.com/37708330/53917991-200bd900-4066-11e9-81cd-692177d466dd.png)
+![ezgif com-video-to-gif 1](https://user-images.githubusercontent.com/37708330/46537145-d6e60c00-c8b0-11e8-8e56-95864f0eb998.gif)
 
 ## Table Content: ##
 - [Motivation Lane Detection](#motivation)
