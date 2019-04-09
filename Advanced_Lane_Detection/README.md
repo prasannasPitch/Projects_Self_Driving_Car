@@ -10,7 +10,7 @@ Udacity - Self-Driving Car NanoDegree
 - [Thresholded Output](#thresh)
 - [Prespective Transform](#trans)
 - [Find Lane pixels](#trans)
-- [Find LaneCalcualte Curvature and Offset from Centrepixels](#curve)
+- [Calcualte Curvature and Offset from Centrepixels](#curve)
 - [Convolution Approach](#conv)
 - [Result](#result)
 - [Files](#files)
