@@ -14,8 +14,8 @@ The goal of the project is to localize the movement of the kidnapped vehicle  wi
 - [File Structure](#file)
 - [Integrated Efficient C++ (11) Features](#c++)
 
-
-## Motivation for Particle Filter <a name="motivation"></a>
+ <a name="motivation"></a>
+## Motivation for Particle Filter
 Before diving into particle filter, we recall the concept of localization. As the table given below, eventhough both sensor fusion and localization goal is to predict the location of a moving vehicle, it should be clear to know the similarities and the difference between these concepts.
 
 | Localization            | Sensor Fusion                                                 |
