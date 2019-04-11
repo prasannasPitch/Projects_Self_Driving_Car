@@ -59,8 +59,8 @@ Localization of an object within a given map can be effected by probabilistic fi
 posteriors[i] = motion_prob * observation_prob;
 
 ```
- 
- ## General Workflow<a name="imp"></a>
+ <a name="imp"></a>
+ ## General Workflow
  
 ![image](https://user-images.githubusercontent.com/37708330/52903657-f444c280-3220-11e9-812c-d40fd60c681a.png)
  
@@ -68,8 +68,9 @@ posteriors[i] = motion_prob * observation_prob;
  The main objective of a particle filter is to track a variable of interest as it evolves over time, typically with a non-Gaussian and potentially multi-modal PDF (Probability Distribution Function). The basis of the method is to construct a sample-based representation of the entire PDF. A series of actions are taken, each one modifying the state of the variable of interest according to some model. Moreover, at certain times an observation arrives that constrains the state of the variable of interest at that time. Multiple copies (particles) of the variable of interest are used, each one associated with a weight that signifies the quality of the specific particle. An estimate of the variable of interest is obtained by the weighted sum of all the particles. The particle filter algorithm is recursive in nature and operates in two phases. 1. Prediction 2. Update. After each action, each particle is modified according to the existing model (prediction stage), including the addition of random noise in order to simulate the effect of noise on the variable of interest. Then, each particles weight is re-evaluated based on the latest sensory information available. At times the particles with small weights are eliminated, a process called resampling. 
  </p>
 
-## Pseudocode  Explanation<a name="psu"></a>
+<a name="psu"></a>
 
+## Pseudocode  Explanation
 
 ![image](https://user-images.githubusercontent.com/37708330/52903692-95cc1400-3221-11e9-945c-2fd7250307eb.png)
  <p align="justify">
@@ -85,8 +86,8 @@ This is an outline of steps you will need to take with your code in order to imp
 
 5. The new set of particles represents the Bayes filter posterior probability. We now have a refined estimate of the vehicles position based on input evidence.
 
-
-## Running the Code <a name="run"></a>
+<a name="run"></a>
+## Running the Code 
 This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
 
 This repository includes two files that can be used to set up and install uWebSocketIO for either Linux or Mac systems. For windows you can use either Docker, VMware, or even Windows 10 Bash on Ubuntu to install uWebSocketIO.
