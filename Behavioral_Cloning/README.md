@@ -10,13 +10,14 @@ Self-Driving Car Engineer Nanodegree Program
 - [Result](#result)
 - [Files](#files)
 
-## Motivation for Behavioral Cloning <a name="motivation"></a>
+<a name="motivation"></a>
+## Motivation for Behavioral Cloning 
 <p align="justify">
 While neural networks are responsible for recent breakthroughs in problems like computer vision, machine translation and time series prediction – they can also combine with techniques such as behavioral cloning to add up enough cognizance to any autonomous system. The end-to-end approach such as Nvidia’s BB8 trains a Deep Convolution Neural Network to generate steering angle based on the input camera observation. This CNN learns from the behavior of a human expert driver and tries to replicate the control of the driver for the learned situation. The technique to replicate the human behavior is called behavioral cloning. 
  </p>
  
- 
- ## Collection of Training Data - Simulator <a name="sim"></a>
+ <a name="sim"></a>
+ ## Collection of Training Data - Simulator 
  
  <p align="justify">
  For collecting training data, we use the simulated environment given by Udacity Simulator. It has two operating modes in it : 1. Training mode - where we could drive the car through the tracks provided. 2. Autonomous mode - where the designed model is utilized to run the car autonomously. </p>
@@ -34,8 +35,8 @@ The training data should be collected by considering the below mentioned points.
 - we want to avoid over fitting or under fitting when training the model
 - knowing when to stop collecting more data
 
-
-## Data Exploration <a name="data_explore"></a>
+ <a name="data_explore"></a>
+## Data Exploration
 
 The simulator gives the frames of our driving in the selected directory.
 
@@ -49,8 +50,8 @@ From the log file we could see that there are three images for a selected scene.
 
 ![output_14_0](https://user-images.githubusercontent.com/37708330/50383091-3e8c4600-06ad-11e9-8eff-ca401311a1c5.png)
 
-## Preprocessing Step <a name="preprocess"></a>
-
+<a name="preprocess"></a>
+## Preprocessing Step 
 In this step, we use two methods for preprocessing images. 
 
 - Changing presprective for using multiple cameras
@@ -94,8 +95,9 @@ Here is an example of an input image and its cropped version after passing throu
 
 ![image](https://user-images.githubusercontent.com/37708330/50383681-418d3380-06b9-11e9-88ef-0420d707c859.png)
 
-## Model Architecture <a name="model"></a>
+ <a name="model"></a>
 
+## Model Architecture
 
 ###  Model Overview
 
