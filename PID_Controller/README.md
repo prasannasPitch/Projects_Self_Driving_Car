@@ -30,7 +30,7 @@ Fellow students have put together a guide to Windows set-up for the project [her
 
 ![pCntrl](https://user-images.githubusercontent.com/37708330/56099352-f3bc6580-5f0b-11e9-8b31-ad0252f36608.png)
 ![pdCntrl](https://user-images.githubusercontent.com/37708330/56099353-f3bc6580-5f0b-11e9-9b88-4e33eb01fa23.png)
-![unnamed](https://user-images.githubusercontent.com/37708330/56099354-f3bc6580-5f0b-11e9-9df6-91cf52f0c2cd.png
+![unnamed](https://user-images.githubusercontent.com/37708330/56099354-f3bc6580-5f0b-11e9-9df6-91cf52f0c2cd.png)
 
 ## Basic Build Instructions
 
