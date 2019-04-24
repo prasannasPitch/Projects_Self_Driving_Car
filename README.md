@@ -58,3 +58,8 @@ This respository is dedicated for the various projects given in Udacity's Self D
   <tr>
   </tr>
 </table>
+
+## Self Driving Car Architecture
+
+![image](https://user-images.githubusercontent.com/37708330/56696204-76eb7180-66eb-11e9-97ff-7c26eb1add2c.png)
+
