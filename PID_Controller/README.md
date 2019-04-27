@@ -7,18 +7,21 @@ PID stands for Proportional-Integral-Derivative.These three components are combi
 A cross track error is a distance of the vehicle from trajectory. In theory it’s best suited to control the car by steering in proportion to Cross Track Error(CTE).
 
 ### P component :
-It sets the steering angle in proportion to CTE with a proportional factor tau. In other words, the P, or "proportional", component had the most directly observable effect on the car’s behaviour. It causes the car to steer proportional (and opposite) to the car’s distance from the lane center(CTE) - if the car is far to the right it steers hard to the left, if it’s slightly to the left it steers slightly to the right.
+<p align="justify">
+It sets the steering angle in proportion to CTE with a proportional factor tau. In other words, the P, or "proportional", component had the most directly observable effect on the car’s behaviour. It causes the car to steer proportional (and opposite) to the car’s distance from the lane center(CTE) - if the car is far to the right it steers hard to the left, if it’s slightly to the left it steers slightly to the right. </p>
 
 ### I component :
-It’s the integral or sum of error to deal with systematic biases. In other words, the I, or "integral", component counteracts a bias in the CTE which prevents the P-D controller from reaching the center line. This bias can take several forms, such as a steering drift , but I believe that in this particular implementation the I component particularly serves to reduce the CTE around curves. And combination of these we can get PID controller to control the steering value.
+<p align="justify">
+It’s the integral or sum of error to deal with systematic biases. In other words, the I, or "integral", component counteracts a bias in the CTE which prevents the P-D controller from reaching the center line. This bias can take several forms, such as a steering drift , but I believe that in this particular implementation the I component particularly serves to reduce the CTE around curves. And combination of these we can get PID controller to control the steering value. </p>
 
 ### D component :
-It’s the differential component of the controller which helps to take temporal derivative of error. This means when the car turned enough to reduce the error, it will help not to overshoot through the x axis. In other words, the D, or "differential", component counteracts the P component’s tendency to ring and overshoot the center line. A properly tuned D parameter will cause the car to approach the center line smoothly without ringing.
+<p align="justify">
+It’s the differential component of the controller which helps to take temporal derivative of error. This means when the car turned enough to reduce the error, it will help not to overshoot through the x axis. In other words, the D, or "differential", component counteracts the P component’s tendency to ring and overshoot the center line. A properly tuned D parameter will cause the car to approach the center line smoothly without ringing. </p>
 
 ## Comparison of Controllers:
 
 ### P Controller :
-
+<p align="justify">
 The main usage of the P controller is to decrease the steady state error of the
 system. As the proportional gain factor K increases, the steady state error of the system
 decreases. However, despite the reduction, P control can never manage to eliminate the steady
@@ -28,35 +31,38 @@ the noise. We can use this controller only when our system is tolerable to a con
 state error. In addition, it can be easily concluded that applying P controller decreases the rise
 time and after a certain value of reduction on the steady state error, increasing K only leads to
 overshoot of the system response. P control also causes oscillation if sufficiently aggressive in
-the presence of lags and/or dead time. 
+the presence of lags and/or dead time. </p>
 
 
 ![pCntrl](https://user-images.githubusercontent.com/37708330/56099352-f3bc6580-5f0b-11e9-8b31-ad0252f36608.png)
 
 ### PD Controller :
-
+<p align="justify">
  In order to avoid effects of the sudden change in the value of the error signal, the derivative is taken from the
 output response of the system variable instead of the error signal. Therefore, D mode is
 designed to be proportional to the change of the output variable to prevent the sudden changes
-occurring in the control output resulting from sudden changes in the error signal.
+occurring in the control output resulting from sudden changes in the error signal. </p>
 
 ![pdCntrl](https://user-images.githubusercontent.com/37708330/56099353-f3bc6580-5f0b-11e9-9b88-4e33eb01fa23.png)
 
 ### PID Controller :
+<p align="justify">
 P-I-D controller has the optimum control dynamics including zero steady state error, fast
 response (short rise time), no oscillations and higher stability. The necessity of using a
 derivative gain component in addition to the PI controller is to eliminate the overshoot and the
-oscillations occurring in the output response of the system. 
+oscillations occurring in the output response of the system.  </p>
 
 ![unnamed](https://user-images.githubusercontent.com/37708330/56099354-f3bc6580-5f0b-11e9-9df6-91cf52f0c2cd.png)
 
-### Twiddle :
-
-Twiddle algorithm is an automated optimization of hyperparameters in the controller. We initialize the controller with user defined variable. Then we increase the controller parameter in an automated way by a factor of 1.1 . For this value we check the error and compare it with the previous PID error. Based on the extent of increase or decrease in the error value, we further increase or decrease the controller parameters. By this way, we approximately determine what could be the optimal hyper parameters. But one disadvantage is, this automated tuning can make the controller slow and can also fall into local minima. 
-
 ### Tuning of Parameters :
+<p align="justify">
+ As an inital configuration I used the values from the lesson (p=0,2, i=0,004, d=3). These parameters worked well for constant throttle of 0.3. The I tried to increase the speed of the car by using higher constant throttle values and figured out that the car got of the track. However, in the final implementation, a twiddle algorithm is implemented to automate tuning of hyperparameters. </p>
 
- As an inital configuration I used the values from the lesson (p=0,2, i=0,004, d=3). These parameters worked well for constant throttle of 0.3. The I tried to increase the speed of the car by using higher constant throttle values and figured out that the car got of the track. In order to overcome this issue, a PID components were manually tuned to navigate through the given track.
+### Twiddle :
+<p align="justify">
+Twiddle algorithm is an automated optimization of hyperparameters in the controller. We initialize the controller with user defined variable. Then we increase the controller parameter in an automated way by a factor of 1.1 . For this value we check the error and compare it with the previous PID error. Based on the extent of increase or decrease in the error value, we further increase or decrease the controller parameters. By this way, we approximately determine what could be the optimal hyperparameters. But one disadvantage is, this automated tuning can make the controller slow and can also fall into local minima. </p>
+
+
 
 
 ## Dependencies
