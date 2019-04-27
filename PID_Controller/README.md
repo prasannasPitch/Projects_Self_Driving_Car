@@ -1,7 +1,23 @@
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
----
+
+PID stands for Proportional-Integral-Derivative.These three components are combined in such a way that it produces a control signal. Before getting into the implementation, let’s discuss the PID controller components. I am going to discuss based on how to use PID for steering angles.
+
+### Cross Track Error :
+A cross track error is a distance of the vehicle from trajectory. In theory it’s best suited to control the car by steering in proportion to Cross Track Error(CTE).
+
+### P component :
+It sets the steering angle in proportion to CTE with a proportional factor tau. In other words, the P, or "proportional", component had the most directly observable effect on the car’s behaviour. It causes the car to steer proportional (and opposite) to the car’s distance from the lane center(CTE) - if the car is far to the right it steers hard to the left, if it’s slightly to the left it steers slightly to the right.
+
+### I component :
+It’s the integral or sum of error to deal with systematic biases. In other words, the I, or "integral", component counteracts a bias in the CTE which prevents the P-D controller from reaching the center line. This bias can take several forms, such as a steering drift , but I believe that in this particular implementation the I component particularly serves to reduce the CTE around curves. And combination of these we can get PID controller to control the steering value.
+
+### D component :
+It’s the differential component of the controller which helps to take temporal derivative of error. This means when the car turned enough to reduce the error, it will help not to overshoot through the x axis. In other words, the D, or "differential", component counteracts the P component’s tendency to ring and overshoot the center line. A properly tuned D parameter will cause the car to approach the center line smoothly without ringing.
+
+### Twiddle :
+
 
 ## Dependencies
 
