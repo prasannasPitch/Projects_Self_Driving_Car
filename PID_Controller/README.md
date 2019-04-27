@@ -52,6 +52,10 @@ oscillations occurring in the output response of the system.
 
 ### Twiddle :
 
+### Tuning of Parameters :
+
+ As an inital configuration I used the values from the lesson (p=0,2, i=0,004, d=3). These parameters worked well for constant throttle of 0.3. The I tried to increase the speed of the car by using higher constant throttle values and figured out that the car got of the track. In order to overcome this issue, a PID components were manually tuned to navigate through the given track.
+
 
 ## Dependencies
 
