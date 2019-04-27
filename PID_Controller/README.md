@@ -2,8 +2,7 @@
 Self-Driving Car Engineer Nanodegree Program
 
 
-PID stands for Proportional-Integral-Derivative.These three components are combined in such a way that it produces a control signal. Before getting into the implementation, let’s discuss the PID controller components. I am going to discuss based on how to use PID for steering angles.
-
+PID stands for Proportional-Integral-Derivative.These three components are combined in such a way that it produces a control signal. Before getting into the implementation, let’s discuss the PID controller components.
 ### Cross Track Error :
 A cross track error is a distance of the vehicle from trajectory. In theory it’s best suited to control the car by steering in proportion to Cross Track Error(CTE).
 
@@ -15,6 +14,41 @@ It’s the integral or sum of error to deal with systematic biases. In other wor
 
 ### D component :
 It’s the differential component of the controller which helps to take temporal derivative of error. This means when the car turned enough to reduce the error, it will help not to overshoot through the x axis. In other words, the D, or "differential", component counteracts the P component’s tendency to ring and overshoot the center line. A properly tuned D parameter will cause the car to approach the center line smoothly without ringing.
+
+## Comparison of Controllers:
+
+### P Controller :
+
+The main usage of the P controller is to decrease the steady state error of the
+system. As the proportional gain factor K increases, the steady state error of the system
+decreases. However, despite the reduction, P control can never manage to eliminate the steady
+state error of the system. As we increase the proportional gain, it provides smaller amplitude
+and phase margin, faster dynamics satisfying wider frequency band and larger sensitivity to
+the noise. We can use this controller only when our system is tolerable to a constant steady
+state error. In addition, it can be easily concluded that applying P controller decreases the rise
+time and after a certain value of reduction on the steady state error, increasing K only leads to
+overshoot of the system response. P control also causes oscillation if sufficiently aggressive in
+the presence of lags and/or dead time. 
+
+
+![pCntrl](https://user-images.githubusercontent.com/37708330/56099352-f3bc6580-5f0b-11e9-8b31-ad0252f36608.png)
+
+### PD Controller :
+
+ In order to avoid effects of the sudden change in the value of the error signal, the derivative is taken from the
+output response of the system variable instead of the error signal. Therefore, D mode is
+designed to be proportional to the change of the output variable to prevent the sudden changes
+occurring in the control output resulting from sudden changes in the error signal.
+
+![pdCntrl](https://user-images.githubusercontent.com/37708330/56099353-f3bc6580-5f0b-11e9-9b88-4e33eb01fa23.png)
+
+### PID Controller :
+P-I-D controller has the optimum control dynamics including zero steady state error, fast
+response (short rise time), no oscillations and higher stability. The necessity of using a
+derivative gain component in addition to the PI controller is to eliminate the overshoot and the
+oscillations occurring in the output response of the system. 
+
+![unnamed](https://user-images.githubusercontent.com/37708330/56099354-f3bc6580-5f0b-11e9-9df6-91cf52f0c2cd.png)
 
 ### Twiddle :
 
@@ -39,14 +73,8 @@ It’s the differential component of the controller which helps to take temporal
     cd uWebSockets
     git checkout e94b6e1
     ```
-    Some function signatures have changed in v0.14.x. See [this PR](https://github.com/udacity/CarND-MPC-Project/pull/3) for more details.
-* Simulator. You can download these from the [project intro page](https://github.com/udacity/self-driving-car-sim/releases) in the classroom.
 
-Fellow students have put together a guide to Windows set-up for the project [here](https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/files/Kidnapped_Vehicle_Windows_Setup.pdf) if the environment you have set up for the Sensor Fusion projects does not work for this project. There's also an experimental patch for windows in this [PR](https://github.com/udacity/CarND-PID-Control-Project/pull/3).
 
-![pCntrl](https://user-images.githubusercontent.com/37708330/56099352-f3bc6580-5f0b-11e9-8b31-ad0252f36608.png)
-![pdCntrl](https://user-images.githubusercontent.com/37708330/56099353-f3bc6580-5f0b-11e9-9b88-4e33eb01fa23.png)
-![unnamed](https://user-images.githubusercontent.com/37708330/56099354-f3bc6580-5f0b-11e9-9df6-91cf52f0c2cd.png)
 
 ## Basic Build Instructions
 
