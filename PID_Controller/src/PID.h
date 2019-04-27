@@ -45,6 +45,23 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+ 
+   /**
+   * Differential Coefficients
+   */ 
+ 	double dpp;				
+  double dpi;				
+  double dpd;				
+ 
+  double * setGainValue(const int& id);				
+  double * setDifferentialValue(const int& id);				
+  int controller;				
+  int controllerSequence;			
+ 
+public:				
+    double best_err;				
+    bool best_err_initialized;				
+    void twiddle(double err);
 };
 
 #endif  // PID_H
