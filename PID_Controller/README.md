@@ -62,7 +62,9 @@ oscillations occurring in the output response of the system.  </p>
 <p align="justify">
 Twiddle algorithm is an automated optimization of hyperparameters in the controller. We initialize the controller with user defined variable. Then we increase the controller parameter in an automated way by a factor of 1.1 . For this value we check the error and compare it with the previous PID error. Based on the extent of increase or decrease in the error value, we further increase or decrease the controller parameters. By this way, we approximately determine what could be the optimal hyperparameters. But one disadvantage is, this automated tuning can make the controller slow and can also fall into local minima. </p>
 
+### Output :
 
+Youtube Link : https://youtu.be/3NADIeyl0Ms
 
 
 ## Dependencies
