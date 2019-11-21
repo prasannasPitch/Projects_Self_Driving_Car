@@ -317,4 +317,4 @@ Predicted Image Result : Turn left ahead
 | Turn right ahead | 0.00158489383466% |
 
 
-Out of 11 completely unseen images, the model could predict 10 correctly (accuracy = 91%). This shows that the model is robust enough and with further fine tuning of hyper parameters, the accuracy could be further more improved.
+Out of 11 completely unseen images, the model could predict 10 correctly (accuracy = 91%) which is comparable to the dataset test accuracy (95.5%). This shows that the model is robust enough and with further fine tuning of hyper parameters, the accuracy could be further more improved.
