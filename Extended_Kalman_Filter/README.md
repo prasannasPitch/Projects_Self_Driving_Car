@@ -26,9 +26,9 @@ As we approach towards level autonomous 4-5, the number of sensors in a car incr
 - Cameras are the master of classification and texture interpretation. By far the cheapest and most available sensor (but not the cheapest processing), cameras use massive amounts of data (full HD means millions of pixel or Megabytes at every frame), making processing a computational intense and algorithmically complex job. Unlike both lidar and radar, cameras can see color, making them the best for scene interpretation.
  </p>
 
-
+<!-- 
 ![classification](https://user-images.githubusercontent.com/37708330/50005132-8a523780-ffa9-11e8-8229-aaf60b765043.png)
-
+ -->
 <a name="fusion"></a>
 ## Sensor Fusion by Kalman Filter:
 
